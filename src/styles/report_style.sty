@@ -1,0 +1,100 @@
+\ProvidesPackage{src/styles/report_style}
+
+% Margin Standar Laporan (Kiri 4cm, Atas 3cm, Kanan 3cm, Bawah 3cm)
+\RequirePackage[a4paper, left=4cm, right=3cm, top=3cm, bottom=3cm]{geometry}
+
+% Font Times New Roman (setara)
+\RequirePackage{newtxtext, newtxmath}
+
+% Bahasa dan Encoding
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage[indonesian]{babel}
+
+% Spacing 1.5
+\RequirePackage{setspace}
+\onehalfspacing
+\setlength{\emergencystretch}{3em}
+
+% Gambar dan Warna
+\RequirePackage{graphicx}
+\RequirePackage{xcolor}
+
+% Tabel
+\RequirePackage{booktabs}
+\RequirePackage{multirow}
+\RequirePackage{longtable}
+\RequirePackage{array}
+
+% Code Listing
+\RequirePackage{listings}
+\lstdefinelanguage{JavaScript}{
+  keywords={break,case,catch,const,continue,debugger,default,delete,do,else,export,extends,false,finally,for,function,if,import,in,instanceof,let,new,null,return,super,switch,this,throw,true,try,typeof,var,void,while,with,yield,class},
+  ndkeywords={boolean,constructor,document,interface,window},
+  sensitive=true,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  morestring=[b]"
+}
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{blue},
+    stringstyle=\color{red},
+    commentstyle=\color{green!60!black},
+    showstringspaces=false
+}
+
+% Format Judul Bab dan Subbab
+\RequirePackage{titlesec}
+
+% Format BAB: "BAB I", Rata Tengah, Kapital, Font Besar
+\titleformat{\chapter}[display]
+  {\normalfont\large\bfseries\centering}
+  {\MakeUppercase{\chaptertitlename} \Roman{chapter}}
+  {1ex}
+  {\MakeUppercase}
+\titlespacing*{\chapter}{0pt}{-20pt}{20pt}
+
+% Format Subbab: 1.1, 1.2 rata kiri
+\titleformat{\section}
+  {\normalfont\normalsize\bfseries}
+  {\thesection}
+  {1em}
+  {}
+
+% Format Sub-subbab: 1.1.1
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries}
+  {\thesubsection}
+  {1em}
+  {}
+
+% Header & Footer rapi
+\RequirePackage{fancyhdr}
+\setlength{\headheight}{14.5pt}
+\pagestyle{fancy}
+\fancyhf{} % Bersihkan default
+\fancyhead[R]{\thepage} % Nomor halaman di kanan atas untuk halaman isi
+\renewcommand{\headrulewidth}{0pt} % Hilangkan garis bawah header
+\renewcommand{\footrulewidth}{0pt}
+
+% Khusus halaman pertama setiap bab (nomor di bawah tengah)
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+% Pengaturan Link otomatis untuk Daftar Isi
+\RequirePackage[hidelinks,plainpages=false,pdfpagelabels]{hyperref}
+\RequirePackage{url}
+\urlstyle{same} % Agar font URL sama dengan font teks biasa (Times New Roman)
+\RequirePackage{pdfpages}
+
+% Paket Dummy Text
+\RequirePackage{lipsum}

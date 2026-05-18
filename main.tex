@@ -1,0 +1,46 @@
+\documentclass[12pt,a4paper,oneside]{report}
+\makeatletter
+\def\input@path{{src/styles/}}
+\makeatother
+\usepackage{report_style} % Memanggil file style custom
+
+\begin{document}
+\hypersetup{pageanchor=false}
+
+% --- BAGIAN AWAL ---
+\pagenumbering{roman}
+
+\include{src/front_matter/sampul}
+% \include{src/front_matter/pengesahan}
+% \include{src/front_matter/kata_pengantar}
+
+% Daftar Isi, Gambar, Tabel
+\clearpage
+\tableofcontents
+\clearpage
+\listoffigures
+\clearpage
+\listoftables
+\clearpage
+
+% --- BAGIAN UTAMA ---
+\hypersetup{pageanchor=true}
+\pagenumbering{arabic}
+
+\include{src/chapters/bab_1_pendahuluan}
+\include{src/chapters/bab_2_profil_dan_tinjauan}
+\include{src/chapters/bab_3_hasil_dan_pembahasan}
+\include{src/chapters/bab_4_penutup}
+
+% --- BAGIAN AKHIR ---
+\clearpage
+\addcontentsline{toc}{chapter}{Daftar Pustaka}
+\bibliographystyle{ieeetr}
+\bibliography{src/bibliography/references}
+
+% --- LAMPIRAN ---
+\clearpage
+\appendix % Mengubah format BAB menjadi Lampiran A, B, dst.
+\include{src/appendices/lampiran}
+
+\end{document}
