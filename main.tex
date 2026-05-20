@@ -11,15 +11,22 @@
 \pagenumbering{roman}
 
 \include{src/front_matter/sampul}
+\setcounter{page}{2}
 % \include{src/front_matter/pengesahan}
 % \include{src/front_matter/kata_pengantar}
 
 % Daftar Isi, Gambar, Tabel
 \clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Daftar Isi}
 \tableofcontents
 \clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Daftar Gambar}
 \listoffigures
 \clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Daftar Tabel}
 \listoftables
 \clearpage
 

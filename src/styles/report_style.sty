@@ -78,16 +78,18 @@
 \RequirePackage{fancyhdr}
 \setlength{\headheight}{14.5pt}
 \pagestyle{fancy}
-\fancyhf{} % Bersihkan default
-\fancyhead[R]{\thepage} % Nomor halaman di kanan atas untuk halaman isi
-\renewcommand{\headrulewidth}{0pt} % Hilangkan garis bawah header
+\fancyhf{}
+\fancyhead{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 
-% Khusus halaman pertama setiap bab (nomor di bawah tengah)
 \fancypagestyle{plain}{
   \fancyhf{}
+  \fancyhead{}
   \fancyfoot[C]{\thepage}
   \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
 }
 
 % Pengaturan Link otomatis untuk Daftar Isi
