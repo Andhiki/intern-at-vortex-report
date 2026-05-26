@@ -10,6 +10,5 @@
 **/*.run.xml
 **/*.synctex.gz
 **/*.toc
-**/*.pdf
 **/*.lof
 **/*.lot
