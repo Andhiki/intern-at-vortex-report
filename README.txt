@@ -15,8 +15,10 @@ Struktur Folder (Rapi):
 │   ├── chapters
 │   │   ├── bab_1_pendahuluan.tex
 │   │   ├── bab_2_profil_dan_tinjauan.tex
-│   │   ├── bab_3_hasil_dan_pembahasan.tex
-│   │   └── bab_4_penutup.tex
+│   │   ├── bab_3_pengembangan_fitur_dan_modul_proyek.tex
+│   │   ├── bab_4_pengujian_unit_dan_modul_proyek.tex
+│   │   ├── bab_5_kemampuan_berkomunikasi.tex
+│   │   └── bab_6_penutup.tex
 │   ├── appendices
 │   │   └── lampiran.tex
 │   └── bibliography
@@ -45,4 +47,4 @@ Catatan Penggunaan:
 1. Ganti \rule{...} dengan \includegraphics{...} pada file sampul dan bab terkait.
 2. Simpan semua gambar ke dalam folder assets/images.
 3. Edit detail mahasiswa dan dosen di src/front_matter/sampul.tex dan src/front_matter/pengesahan.tex.
-4. Teks dummy (\lipsum) ada di setiap bab untuk menunjukkan visual tata letak. Hapus \lipsum dan ganti dengan teks laporan Anda.
+4. Pastikan setiap bab berisi narasi laporan aktual dan tidak menyisakan teks dummy.
