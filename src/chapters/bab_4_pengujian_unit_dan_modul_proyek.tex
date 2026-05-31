@@ -3,43 +3,71 @@
 \section{Identitas Mata Kuliah}
 \begingroup
 \renewcommand{\arraystretch}{1.15}
-\noindent\begin{tabular}{@{}p{3.6cm}@{\hspace{0.2cm}}p{0.2cm}@{\hspace{0.2cm}}p{7.6cm}@{}}
+\noindent\begin{tabularx}{\linewidth}{@{}p{3.6cm}@{\hspace{0.2cm}}p{0.2cm}@{\hspace{0.2cm}}X@{}}
     \textbf{Kode Mata Kuliah} & : & MII21-3015 \\
     \textbf{Nama Mata Kuliah} & : & Internship: Pengujian Unit dan Modul Proyek \\
     \textbf{Bobot} & : & 3 SKS \\
-    \textbf{Bentuk Kegiatan} & : & Magang MBKM sebagai Software Engineer Intern di OPPO Manufacturing Indonesia \\
-    \textbf{Proyek Terkait} & : & 360 Peer-to-Peer Grading System dan PQPR Software Project \\
-\end{tabular}
+    \textbf{Bentuk Kegiatan} & : & Magang MBKM sebagai Software Engineer Intern di PT Vortex Buana Edumedia \\
+    \textbf{Proyek Terkait} & : & Pengujian fitur Import Nilai Neon Uji dan validasi dokumentasi komponen Neon Interfaces \\
+\end{tabularx}
 \par\vspace{0.5\baselineskip}
 \endgroup
 
-Mata kuliah ini berfokus pada kemampuan melakukan pengujian terhadap unit dan modul perangkat lunak agar sistem yang dikembangkan memiliki perilaku yang sesuai dengan kebutuhan. Dalam kegiatan magang, pengujian dilakukan pada fitur-fitur yang berkaitan dengan proses evaluasi karyawan pada 360 Peer-to-Peer Grading System dan modul pendukung changeover produksi pada PQPR Software Project.
+Mata kuliah ini berfokus pada kemampuan melakukan pengujian terhadap unit dan modul perangkat lunak agar sistem yang dikembangkan memiliki perilaku yang sesuai dengan kebutuhan. Dalam kegiatan magang, pengujian dilakukan pada fitur Import Nilai Neon Uji di repositori Pendidikan serta pada dokumentasi komponen Neon Interfaces yang ditampilkan melalui Storybook.
 
 \section{Silabus}
 Silabus mata kuliah mencakup pemahaman tujuan pengujian perangkat lunak, penyusunan skenario uji, pemeriksaan unit dan modul, validasi masukan dan keluaran, pelacakan kesalahan, debugging, serta dokumentasi hasil pengujian. Pengujian dilakukan untuk memastikan setiap bagian sistem bekerja sesuai rancangan sebelum digunakan dalam alur kerja yang lebih besar.
 
-Dalam konteks proyek magang, pengujian tidak hanya dilakukan untuk menemukan kesalahan teknis, tetapi juga untuk memastikan bahwa fitur dapat digunakan dengan aman dan konsisten oleh pengguna internal perusahaan. Hal ini penting karena kesalahan pada modul evaluasi maupun modul produksi dapat memengaruhi keakuratan data dan kelancaran proses operasional.
+Dalam konteks proyek magang, pengujian tidak hanya dilakukan untuk menemukan kesalahan teknis, tetapi juga untuk memastikan bahwa fitur dapat digunakan secara konsisten oleh pengguna internal. Hal ini penting pada fitur Import Nilai Neon Uji karena kesalahan pada proses pemilihan data, pemetaan kuis, atau publikasi nilai dapat memengaruhi keakuratan hasil penilaian siswa.
 
 \section{Aktivitas}
-Pada proyek 360 Peer-to-Peer Grading System, aktivitas pengujian dilakukan terhadap alur pengisian penilaian, validasi data evaluasi, penyimpanan hasil, serta tampilan rekapitulasi. Skenario uji disusun berdasarkan kemungkinan penggunaan sistem, seperti pengguna mengisi data secara lengkap, pengguna melewati isian wajib, dan sistem menampilkan kembali hasil penilaian. Pengujian tersebut membantu memastikan bahwa proses evaluasi dapat berjalan terstruktur dan tidak menghasilkan data yang tidak valid.
+Aktivitas pengujian utama dilakukan pada fitur Import Nilai Neon Uji. Pengujian disusun berdasarkan alur penggunaan fitur, mulai dari pemilihan filter informasi penilaian, pemuatan data siswa atau kelompok belajar, pemilihan tipe penilaian, pengambilan quiz set, pembuatan komponen penilaian, pemetaan kuis, pratinjau data nilai, hingga publikasi nilai. Setiap tahap diuji untuk memastikan data yang tampil sesuai dengan pilihan pengguna dan perubahan pada satu bagian alur tidak merusak tahap berikutnya.
 
-Pada PQPR Software Project, pengujian dilakukan terhadap modul yang berkaitan dengan informasi produk, konfigurasi lini produksi, dan data kemampuan operator. Aktivitas pengujian mencakup pemeriksaan kesesuaian keluaran modul terhadap data masukan, pengecekan perubahan data, serta validasi bahwa informasi yang ditampilkan tetap konsisten setelah dilakukan pembaruan. Karena proyek ini berhubungan dengan proses manufaktur, pengujian perlu memperhatikan akurasi data dan keterlacakan perubahan.
+Pengujian juga memperhatikan kondisi khusus, seperti data yang belum tersedia, pilihan filter yang belum lengkap, kuis yang belum memiliki attempt selesai, dan nilai yang perlu menggunakan skor IRT ketika tersedia. Kondisi tersebut perlu diperiksa karena fitur import nilai bergantung pada data dari Neon Uji dan sistem Pendidikan. Jika data tidak lengkap atau tidak sesuai, sistem perlu tetap menampilkan informasi yang jelas kepada pengguna.
 
-Aktivitas lain yang dilakukan adalah debugging terhadap perilaku sistem yang tidak sesuai, melakukan pengecekan ulang setelah perbaikan, dan mendiskusikan hasil temuan dengan pembimbing maupun anggota tim. Setiap temuan pengujian digunakan sebagai dasar untuk memperbaiki fitur atau menyesuaikan logika modul agar lebih sesuai dengan kebutuhan pengguna.
+Selain fitur import nilai, pengujian dilakukan pada dokumentasi komponen Neon Interfaces melalui Storybook. Validasi dilakukan dengan melihat variasi komponen, properti yang dapat diubah, dukungan tema, dan tampilan contoh penggunaan. Aktivitas ini membantu memastikan dokumentasi komponen dapat menjadi rujukan yang jelas bagi pengembang lain.
+
+Penulis juga menyusun daftar item pengujian secara terpisah di Coda. Daftar tersebut berisi 21 skenario uji yang mencakup alur utama, validasi data, kondisi kosong, dan proses publikasi. Karena daftar tersebut tidak dapat diekspor secara langsung, laporan ini menyajikan ringkasan skenario utama pada Bab 4 dan menempatkan placeholder tangkapan layar Coda pada lampiran sebagai bukti pendukung.
 
 \section{Konsep Dasar yang Berkaitan dengan Silabus}
-Konsep dasar yang digunakan dalam pengujian unit adalah memastikan bagian terkecil dari sistem bekerja sesuai tanggung jawabnya. Unit yang diuji perlu memiliki masukan yang jelas, keluaran yang dapat diprediksi, dan penanganan kondisi tidak valid. Konsep ini diterapkan pada validasi form, pengolahan data, dan fungsi pendukung yang digunakan dalam fitur penilaian maupun modul produksi.
+Konsep dasar yang digunakan dalam pengujian unit adalah memastikan bagian terkecil dari sistem bekerja sesuai tanggung jawabnya. Unit yang diuji perlu memiliki masukan yang jelas, keluaran yang dapat diprediksi, dan penanganan kondisi tidak valid. Konsep ini diterapkan pada validasi filter, pemrosesan data attempt, pemilihan skor yang digunakan, dan pembentukan data nilai sebelum dipublikasikan.
 
-Pengujian modul berfokus pada interaksi beberapa unit dalam satu alur kerja. Modul yang tampak benar secara terpisah masih dapat menghasilkan masalah ketika dihubungkan dengan modul lain. Oleh karena itu, pengujian modul perlu memperhatikan alur data, perubahan status, hubungan antar fitur, dan kesesuaian keluaran dengan kebutuhan bisnis.
+Pengujian modul berfokus pada interaksi beberapa unit dalam satu alur kerja. Modul yang tampak benar secara terpisah masih dapat menghasilkan masalah ketika dihubungkan dengan modul lain. Oleh karena itu, pengujian fitur Import Nilai Neon Uji perlu memperhatikan alur data dari filter sampai publikasi nilai, perubahan status, hubungan antarkomponen, dan kesesuaian keluaran dengan kebutuhan pengguna.
 
 Konsep lain yang berkaitan adalah debugging dan regresi. Debugging dilakukan untuk menemukan penyebab perilaku yang tidak sesuai, sedangkan pengecekan regresi dilakukan untuk memastikan perbaikan tidak merusak fungsi yang sebelumnya sudah berjalan. Dalam proyek magang, kedua konsep tersebut penting karena fitur dikembangkan secara bertahap dan mengalami penyesuaian berdasarkan umpan balik.
 
-\section{Hasil dan Pembahasan}
-Hasil dari pelaksanaan mata kuliah ini adalah meningkatnya kemampuan menyusun dan menjalankan pengujian yang relevan terhadap modul perangkat lunak. Pada 360 Peer-to-Peer Grading System, pengujian membantu memastikan bahwa alur evaluasi karyawan berjalan sesuai rancangan, data yang wajib diisi dapat divalidasi, dan hasil penilaian dapat ditampilkan dengan konsisten. Hal ini mendukung keandalan sistem sebagai sarana pengumpulan umpan balik internal.
+\section{Ringkasan Skenario Pengujian}
+Ringkasan skenario pengujian yang dilakukan dapat dilihat pada Tabel~\ref{tab:ringkasan_pengujian_import_neon_uji}. Daftar lengkap berisi 21 item pengujian disimpan pada Coda dan didokumentasikan sebagai tangkapan layar pada lampiran.
 
-Pada PQPR Software Project, pengujian membantu memastikan bahwa modul yang digunakan untuk mendukung proses changeover produksi menampilkan informasi yang tepat dan merespons perubahan data dengan benar. Validasi terhadap data produk dan kemampuan operator menjadi bagian penting karena informasi tersebut digunakan untuk mendukung keputusan operasional. Pengujian yang dilakukan membantu mengurangi risiko kesalahan data pada sistem.
+\begin{table}[htbp]
+\centering
+\caption{Ringkasan skenario pengujian fitur Import Nilai Neon Uji}
+\label{tab:ringkasan_pengujian_import_neon_uji}
+\begin{tabular}{|p{0.7cm}|p{4.2cm}|p{5.3cm}|p{2.1cm}|}
+\hline
+\textbf{No} & \textbf{Skenario} & \textbf{Hasil yang Diharapkan} & \textbf{Status} \\
+\hline
+1 & Memilih filter informasi penilaian & Data turunan seperti siswa, kelompok belajar, tipe penilaian, dan quiz set tampil sesuai konteks yang dipilih & Sesuai \\
+\hline
+2 & Membuat komponen penilaian & Sistem menampilkan daftar komponen penilaian yang dapat dipetakan dengan quiz set & Sesuai \\
+\hline
+3 & Memetakan quiz set ke komponen penilaian & Komponen penilaian tersambung dengan quiz yang dipilih dan dapat digunakan pada tahap pratinjau & Sesuai \\
+\hline
+4 & Menampilkan pratinjau nilai & Sistem menampilkan data nilai berdasarkan attempt Neon Uji yang valid & Sesuai \\
+\hline
+5 & Mempublikasikan nilai & Sistem membuat data grading dan score sesuai data pratinjau & Sesuai \\
+\hline
+6 & Menangani data kosong atau attempt belum selesai & Sistem tidak mempublikasikan data tidak valid dan memberikan informasi yang dapat dipahami pengguna & Sesuai \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Hasil dan Pembahasan}
+Hasil dari pelaksanaan mata kuliah ini adalah meningkatnya kemampuan menyusun dan menjalankan pengujian yang relevan terhadap modul perangkat lunak. Pada fitur Import Nilai Neon Uji, pengujian membantu memastikan alur import berjalan sesuai rancangan, data nilai yang diproses berasal dari attempt yang valid, dan pengguna dapat melihat pratinjau sebelum melakukan publikasi nilai.
+
+Pada Neon Interfaces, pengujian dokumentasi komponen membantu memastikan komponen yang tersedia dapat dipahami melalui Storybook. Validasi terhadap variasi \textit{button}, \textit{badge}, dan \textit{textarea} menunjukkan bahwa dokumentasi visual memiliki peran penting dalam menjaga konsistensi penggunaan komponen antarmuka.
 
 Pembahasan kegiatan menunjukkan bahwa pengujian perangkat lunak perlu dilakukan sejak proses pengembangan berlangsung, bukan hanya pada akhir pengerjaan. Dengan pengujian bertahap, kesalahan dapat ditemukan lebih awal dan perbaikan dapat dilakukan sebelum masalah menyebar ke modul lain. Pengujian juga menjadi sarana komunikasi teknis karena hasil temuan perlu dijelaskan kepada anggota tim agar perbaikan dapat dilakukan secara tepat.
 
 \section{Kesimpulan}
-Mata kuliah Internship: Pengujian Unit dan Modul Proyek terlaksana melalui aktivitas penyusunan skenario uji, validasi fitur, debugging, dan pengecekan ulang pada 360 Peer-to-Peer Grading System serta PQPR Software Project. Kegiatan ini memperkuat pemahaman bahwa kualitas perangkat lunak bergantung pada kemampuan menguji perilaku sistem secara sistematis. Pengujian yang baik membantu memastikan modul bekerja sesuai kebutuhan, data tetap konsisten, dan sistem lebih siap digunakan dalam lingkungan kerja perusahaan.
+Mata kuliah Internship: Pengujian Unit dan Modul Proyek terlaksana melalui aktivitas penyusunan skenario uji, validasi fitur, debugging, dan pengecekan ulang pada fitur Import Nilai Neon Uji serta dokumentasi komponen Neon Interfaces. Kegiatan ini memperkuat pemahaman bahwa kualitas perangkat lunak bergantung pada kemampuan menguji perilaku sistem secara sistematis. Pengujian yang baik membantu memastikan modul bekerja sesuai kebutuhan, data tetap konsisten, dan sistem lebih siap digunakan dalam lingkungan kerja perusahaan.
