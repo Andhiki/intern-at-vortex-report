@@ -1,0 +1,233 @@
+[
+  {
+    "no": 1,
+    "testCase": "Verifikasi navigasi ke halaman impor Neon Uji",
+    "expectedResult": ["Sistem menampilkan halaman input penilaian"],
+    "steps": ["User login ke aplikasi Neutron", "Masuk ke halaman menu Penilaian", "Klik button +Penilaian pada hover", "Klik \"Import dari Neon Uji\""],
+    "case": "Positive",
+    "status": "Failed",
+    "details": "Issue: Button import penilaian tidak sesuai dengan UI design\nEkspektasi:\nADDITIONAL ISSUE:\nButton secara UI memang sudah sesuai, tapi tidak muncul dropdown dan langsung mengarahkan ke import manual",
+    "priority": "Low",
+    "media": ["C:\\tmp\\coda-media\\row-01-image-1.webp", "C:\\tmp\\coda-media\\row-01-image-2.webp"]
+  },
+  {
+    "no": 2,
+    "testCase": "User melakukan input penilaian manual",
+    "expectedResult": ["Sistem menampilkan halaman Penilaian yang sudah berjalan (alur manual)"],
+    "steps": ["User login ke aplikasi Neutron", "Masuk ke halaman menu Penilaian", "Klik button +Penilaian pada hover", "Klik \"Penilaian Manual\""],
+    "case": "Positive",
+    "status": "Passed",
+    "details": "",
+    "priority": "Low",
+    "media": []
+  },
+  {
+    "no": 3,
+    "testCase": "Verifikasi dropdown pemilihan Tipe Hasil Penilaian",
+    "expectedResult": ["Sistem menampilkan tipe hasil penilaian", "User dapat memilih tipe hasil penilaian", "User dapat meng-klik tipe hasil penilaian"],
+    "steps": ["User login ke aplikasi Neutron", "Masuk ke halaman menu Penilaian", "Klik button +Penilaian pada hover", "Klik \"Import dari Neon Uji\"", "Klik dropdown \"Tipe Hasil Penilaian\"", "Pilih salah satu tipe penilaian"],
+    "case": "Positive",
+    "status": "Passed",
+    "details": "",
+    "priority": "Low",
+    "media": []
+  },
+  {
+    "no": 4,
+    "testCase": "Verifikasi dropdown pemilihan Jenjang Studi",
+    "expectedResult": ["Sistem menampilkan jenjang studi", "User dapat memilih jenjang studi", "User dapat meng-klik jenjang studi"],
+    "steps": ["User login ke aplikasi Neutron", "Masuk ke halaman menu Penilaian", "Klik button +Penilaian pada hover", "Klik \"Import dari Neon Uji\"", "Klik dropdown \"Tipe Hasil Penilaian\"", "Pilih salah satu tipe penilaian", "Klik dropdown \"Jenjang Studi\"", "Pilih salah satu jenjang pendidikan"],
+    "case": "Positive",
+    "status": "Passed",
+    "details": "",
+    "priority": "Low",
+    "media": []
+  },
+  {
+    "no": 5,
+    "testCase": "Verifikasi dropdown pemilihan Jenis  Penilaian",
+    "expectedResult": ["Sistem menampilkan jenis penilaian", "User dapat memilih jenis penilaian", "User dapat meng-klik jenis penilaian"],
+    "steps": ["User login ke aplikasi Neutron", "Masuk ke halaman menu Penilaian", "Klik button +Penilaian pada hover", "Klik \"Import dari Neon Uji\"", "Klik dropdown \"Tipe Hasil Penilaian\"", "Pilih salah satu tipe penilaian", "Klik dropdown \"Jenjang Studi\"", "Pilih salah satu jenjang pendidikan", "Klik dropdown \"Pilih Jenis Penilaian\"", "Pilih salah satu jenis penilaian"],
+    "case": "Positive",
+    "status": "Passed",
+    "details": "",
+    "priority": "Low",
+    "media": []
+  },
+  {
+    "no": 6,
+    "testCase": "Verifikasi dropdown pemilihan Siswa",
+    "expectedResult": ["Sistem menampilkan nama siswa", "User dapat memilih nama siswa", "User dapat meng-klik nama siswa"],
+    "steps": ["User login ke aplikasi Neutron", "Masuk ke halaman menu Penilaian", "Klik button +Penilaian pada hover", "Klik \"Import dari Neon Uji\"", "Klik dropdown \"Tipe Hasil Penilaian\"", "Pilih salah satu tipe penilaian", "Klik dropdown \"Jenjang Studi\"", "Pilih salah satu jenjang pendidikan", "Klik dropdown \"Pilih Jenis Penilaian\"", "Pilih salah satu jenis penilaian", "Klik dropdown \"Pilih Siswa\"", "Pilih salah satu siswa"],
+    "case": "Positive",
+    "status": "Failed",
+    "details": "",
+    "priority": "Low",
+    "media": []
+  },
+  {
+    "no": 7,
+    "testCase": "Verifikasi dropdown pemilihan Kelompok Belajar",
+    "expectedResult": ["Sistem menampilkan jenis penilaian kelompok belajar", "User dapat memilih nama kelompok belajar", "User dapat meng-klik nama kelompok belajar"],
+    "steps": ["User login ke aplikasi Neutron", "Masuk ke halaman menu Penilaian", "Klik button +Penilaian pada hover", "Klik \"Import dari Neon Uji\"", "Klik dropdown \"Tipe Hasil Penilaian\"", "Pilih salah satu tipe penilaian", "Klik dropdown \"Jenjang Studi\"", "Pilih salah satu jenjang pendidikan", "Klik dropdown \"Pilih Jenis Penilaian\"", "Pilih jenis penilaian Kelompok Belajar", "Klik dropdown \"Kelompok Belajar\"", "Pilih salah satu kelompok belajar"],
+    "case": "Positive",
+    "status": "Failed",
+    "details": "Issue: Inkonsistensi antara State Checkbox dan Tampilan 'Selected Value' pada Dropdown Kelompok Belajar\nDeskripsi: Ketika user klik checkbox, tanda centang (checkmark) muncul tapi datanya tidak terpilih dan tidak ter-render sebagai chip/tag (label berlatar belakang merah) di dalam kolom input",
+    "priority": "Low",
+    "media": []
+  },
+  {
+    "no": 8,
+    "testCase": "Verifikasi dropdown pemilihan Tipe Penilaian",
+    "expectedResult": ["Sistem menampilkan tipe penilaian", "User dapat memilih tipe penilaian", "User dapat meng-klik tipe penilaian"],
+    "steps": ["User login ke aplikasi Neutron", "Masuk ke halaman menu Penilaian", "Klik button +Penilaian pada hover", "Klik \"Import dari Neon Uji\"", "Klik dropdown \"Tipe Hasil Penilaian\"", "Pilih salah satu tipe penilaian", "Klik dropdown \"Jenjang Studi\"", "Pilih salah satu jenjang pendidikan", "Klik dropdown \"Pilih Jenis Penilaian\"", "Pilih salah satu jenis penilaian", "Klik dropdown \"Pilih Siswa\"", "Pilih salah satu siswa", "Klik dropdown \"Tipe Penilaian\"", "Pilih salah satu tipe penilaian"],
+    "case": "Positive",
+    "status": "Failed",
+    "details": "Issue: Button 'Lanjutkan' gagal nonaktif kembali setelah input tipe penilaian dikosongkan\nDeskripsi: Button 'Lanjutkan' tidak memperbarui statusnya menjadi disabled ketika user menghapus pilihan tipe penilaiannya\nLangkah Reproduce:\nPilih Kelompok Belajar\nPilih Tipe Penilaian\nKlik batalkan pemilihan tipe penilaian (icon silang) pada tipe penilaian yang sebelumnya dipilih",
+    "priority": "Medium",
+    "media": []
+  },
+  {
+    "no": 9,
+    "testCase": "Verifikasi aktivasi button \"Lanjutkan\"",
+    "expectedResult": ["Button Lanjutkan aktif jika semua field penilaian belum terisi", "Button Lanjutkan non-aktif jika semua field penilaian belum terisi"],
+    "steps": ["User login ke aplikasi Neutron", "Masuk ke halaman menu Penilaian", "Klik button +Penilaian pada hover", "Klik \"Import dari Neon Uji\"", "Klik dropdown \"Tipe Hasil Penilaian\"", "Pilih salah satu tipe penilaian", "Klik dropdown \"Jenjang Studi\"", "Pilih salah satu jenjang pendidikan", "Klik dropdown \"Pilih Jenis Penilaian\"", "Pilih salah satu jenis penilaian", "Klik dropdown \"Pilih Siswa\"", "Pilih salah satu siswa", "Klik dropdown \"Tipe Penilaian\"", "Pilih salah satu tipe penilaian", "Perhatikan button \"Lanjutkan\""],
+    "case": "Positive",
+    "status": "Passed",
+    "details": "",
+    "priority": "Low",
+    "media": []
+  },
+  {
+    "no": 10,
+    "testCase": "Verifikasi navigasi ke halaman NIlai",
+    "expectedResult": ["Sistem men-generate komponen penilaian, quiz, tipe penilaian, cabang"],
+    "steps": ["User login ke aplikasi Neutron", "Masuk ke halaman menu Penilaian", "Klik button +Penilaian pada hover", "Klik \"Import dari Neon Uji\"", "Klik dropdown \"Tipe Hasil Penilaian\"", "Pilih salah satu tipe penilaian", "Klik dropdown \"Jenjang Studi\"", "Pilih salah satu jenjang pendidikan", "Klik dropdown \"Pilih Jenis Penilaian\"", "Pilih salah satu jenis penilaian", "Klik dropdown \"Pilih Siswa\"", "Pilih salah satu siswa", "Klik dropdown \"Tipe Penilaian\"", "Pilih salah satu tipe penilaian", "Klik button \"Lanjutkan\""],
+    "case": "Positive",
+    "status": "Passed",
+    "details": "",
+    "priority": "Low",
+    "media": []
+  },
+  {
+    "no": 11,
+    "testCase": "Verifikasi button \"Batalkan\"",
+    "expectedResult": ["Sistem membatalkan proses import nilai", "Sistem mengarahkan user kembali ke halaman koleksi penilaian"],
+    "steps": ["User login ke aplikasi Neutron", "Masuk ke halaman menu Penilaian", "Klik button +Penilaian pada hover", "Klik \"Import dari Neon Uji\"", "Klik dropdown \"Tipe Hasil Penilaian\"", "Pilih salah satu tipe penilaian", "Klik dropdown \"Jenjang Studi\"", "Pilih salah satu jenjang pendidikan", "Klik dropdown \"Pilih Jenis Penilaian\"", "Pilih salah satu jenis penilaian", "Klik dropdown \"Pilih Siswa\"", "Pilih salah satu siswa", "Klik dropdown \"Tipe Penilaian\"", "Pilih salah satu tipe penilaian", "Klik button \"Batalkan\""],
+    "case": "Negative",
+    "status": "Passed",
+    "details": "",
+    "priority": "Low",
+    "media": []
+  },
+  {
+    "no": 12,
+    "testCase": "Memverifikasi pemetaan Komponen Penilaian ke Quiz (Non-IRT)",
+    "expectedResult": ["Sistem menyiapkan quiz yang akan diambil skornya", "Komponen penilaian yang tadi dipilih akan menunjukkan dat quiz yang telah dipetakan"],
+    "steps": ["User login ke aplikasi Neutron", "Masuk ke halaman menu Penilaian", "Klik button +Penilaian pada hover", "Klik \"Import dari Neon Uji\"", "Pilih salah satu tipe penilaian", "Pilih salah satu jenjang pendidikan", "Pilih salah satu jenis penilaian", "Pilih salah satu siswa", "Pilih salah satu tipe penilaian", "Klik button \"Lanjutkan\"", "Pada tab Nilai, pilih salah satu Data Komponen Penilaian", "Klik dropdown quiz dan pilih salah satu quiz non-IRT yang akan diimpor", "Klik button Terapkan Nilai"],
+    "case": "Positive",
+    "status": "Passed",
+    "details": "",
+    "priority": "Low",
+    "media": []
+  },
+  {
+    "no": 13,
+    "testCase": "Memverifikasi pemetaan Komponen Penilaian ke Quiz (IRT)",
+    "expectedResult": ["Sistem menyiapkan quiz yang akan diambil skornya", "Komponen penilaian yang tadi dipilih akan menunjukkan dat quiz yang telah dipetakan"],
+    "steps": ["User login ke aplikasi Neutron", "Masuk ke halaman menu Penilaian", "Klik button +Penilaian pada hover", "Klik \"Import dari Neon Uji\"", "Pilih salah satu tipe penilaian", "Pilih salah satu jenjang pendidikan", "Pilih salah satu jenis penilaian", "Pilih salah satu siswa", "Pilih salah satu tipe penilaian", "Klik button \"Lanjutkan\"", "Pada tab Nilai, pilih salah satu Data Komponen Penilaian", "Klik dropdown quiz dan pilih salah satu quiz IRT yang akan diimpor", "Klik button Terapkan Nilai"],
+    "case": "Positive",
+    "status": "Passed",
+    "details": "",
+    "priority": "Low",
+    "media": []
+  },
+  {
+    "no": 14,
+    "testCase": "Verifikasi aktivasi button \"Terapkan Nilai\"",
+    "expectedResult": ["Button Terapkan Nilai aktif jika semua field penilaian belum terisi", "Button Terapkan Nilai non-aktif jika semua field penilaian belum terisi"],
+    "steps": ["User login ke aplikasi Neutron", "Masuk ke halaman menu Penilaian", "Klik button +Penilaian pada hover", "Klik \"Import dari Neon Uji\"", "Pilih salah satu tipe penilaian", "Pilih salah satu jenjang pendidikan", "Pilih salah satu jenis penilaian", "Pilih salah satu siswa", "Pilih salah satu tipe penilaian", "Klik button \"Lanjutkan\"", "Pada tab Nilai, pilih salah satu Data Komponen Penilaian", "Klik dropdown quiz dan pilih salah satu quiz yang akan diimpor", "Perhatikan button Terapkan Nilai"],
+    "case": "Positive",
+    "status": "Passed",
+    "details": "",
+    "priority": "Low",
+    "media": []
+  },
+  {
+    "no": 15,
+    "testCase": "Verifikasi aktivasi button \"Hasilkan Penilaian\"",
+    "expectedResult": ["Button Hasilkan Penilaian aktif jika semua field penilaian belum terisi", "Button Hasilkan Penilaian non-aktif jika semua field penilaian belum terisi"],
+    "steps": ["User login ke aplikasi Neutron", "Masuk ke halaman menu Penilaian", "Klik button +Penilaian pada hover", "Klik \"Import dari Neon Uji\"", "Pilih salah satu tipe penilaian", "Pilih salah satu jenjang pendidikan", "Pilih salah satu jenis penilaian", "Pilih salah satu siswa", "Pilih salah satu tipe penilaian", "Klik button \"Lanjutkan\"", "Pada tab Nilai, pilih salah satu Data Komponen Penilaian", "Klik dropdown quiz dan pilih salah satu quiz yang akan diimpor", "Klik button Terapkan Nilai", "Pastikan semua quiz pada komponen penilaian terisi", "Perhatikan button Hasilkan Penilaian"],
+    "case": "Positive",
+    "status": "Failed",
+    "details": "Issue: Button 'Hasilkan Penilaian' aktif walaupun quiz pada komponen penilaian tidak diisi lengkap\nEkspektasi: Walaupun hanya salah satu quiz yang dipilih, button tetap nonaktif",
+    "priority": "Medium",
+    "media": ["C:\\tmp\\coda-media\\row-15-image-1.webp", "C:\\tmp\\coda-media\\row-15-image-2.webp"]
+  },
+  {
+    "no": 16,
+    "testCase": "User melakukan import skor (siswa) non-IRT",
+    "expectedResult": ["Sistem memproses data penilaian", "berhasil menginputkan skor", "SIstem mengarahkan kembali user ke halaman koleksi penilaian"],
+    "steps": ["User login ke aplikasi Neutron", "Masuk ke halaman menu Penilaian", "Klik button +Penilaian pada hover", "Klik \"Import dari Neon Uji\"", "Pilih salah satu tipe penilaian", "Pilih salah satu jenjang pendidikan", "Pilih jenis penilaian \"Siswa\"", "Pilih salah satu siswa", "Pilih salah satu tipe penilaian", "Klik button \"Lanjutkan\"", "Pada tab Nilai, pilih salah satu Data Komponen Penilaian", "Klik dropdown quiz dan pilih salah satu quiz non-IRT yang akan diimpor", "Klik button Terapkan Nilai", "Pastikan semua quiz pada komponen penilaian terisi", "Klik button Hasilkan Penilaian", "Klik button Publikasikan nilai"],
+    "case": "Positive",
+    "status": "Failed",
+    "details": "Issue: Gagal mengimport dengan alert message \"Tidak ada quiz attempt yang ditemukan\" padahal user siswa sudah mengerjakan quiz",
+    "priority": "High",
+    "media": []
+  },
+  {
+    "no": 17,
+    "testCase": "User melakukan import skor (kelompok belajar) non-IRT",
+    "expectedResult": ["Sistem memproses data penilaian", "berhasil menginputkan skor", "SIstem mengarahkan kembali user ke halaman koleksi penilaian"],
+    "steps": ["User login ke aplikasi Neutron", "Masuk ke halaman menu Penilaian", "Klik button +Penilaian pada hover", "Klik \"Import dari Neon Uji\"", "Pilih salah satu tipe penilaian", "Pilih salah satu jenjang pendidikan", "Pilih jenis penilaian \"Kelompok Belajar\"", "Pilih salah satu kelompok belajar", "Pilih salah satu tipe penilaian", "Klik button \"Lanjutkan\"", "Pada tab Nilai, pilih salah satu Data Komponen Penilaian", "Klik dropdown quiz dan pilih salah satu quiz non-IRT yang akan diimpor", "Klik button Terapkan Nilai", "Pastikan semua quiz pada komponen penilaian terisi", "Klik button Hasilkan Penilaian", "Klik button Publikasikan nilai"],
+    "case": "Positive",
+    "status": "Failed",
+    "details": "Issue: Muncul error message \"Tidak ada student yang ditemukan\" padahal ada siswanya",
+    "priority": "High",
+    "media": []
+  },
+  {
+    "no": 18,
+    "testCase": "User melakukan import skor (siswa) IRT",
+    "expectedResult": ["Sistem memproses data penilaian", "berhasil menginputkan skor", "SIstem mengarahkan kembali user ke halaman koleksi penilaian"],
+    "steps": ["User login ke aplikasi Neutron", "Masuk ke halaman menu Penilaian", "Klik button +Penilaian pada hover", "Klik \"Import dari Neon Uji\"", "Pilih salah satu tipe penilaian", "Pilih salah satu jenjang pendidikan", "Pilih jenis penilaian \"Siswa\"", "Pilih salah satu siswa", "Pilih salah satu tipe penilaian", "Klik button \"Lanjutkan\"", "Pada tab Nilai, pilih salah satu Data Komponen Penilaian", "Klik dropdown quiz dan pilih salah satu quiz IRT yang akan diimpor", "Klik button Terapkan Nilai", "Pastikan semua quiz pada komponen penilaian terisi", "Klik button Hasilkan Penilaian", "Klik button Publikasikan nilai"],
+    "case": "Positive",
+    "status": "Failed",
+    "details": "Issue: Terdapat kolom score\nEkspektasi: Tidak ada kolom score",
+    "priority": "Medium",
+    "media": ["C:\\tmp\\coda-media\\row-18-image-1.webp", "C:\\tmp\\coda-media\\row-18-image-2.webp"]
+  },
+  {
+    "no": 19,
+    "testCase": "User melakukan import skor (kelompok belajar) IRT",
+    "expectedResult": ["Sistem memproses data penilaian", "berhasil menginputkan skor", "SIstem mengarahkan kembali user ke halaman koleksi penilaian"],
+    "steps": ["User login ke aplikasi Neutron", "Masuk ke halaman menu Penilaian", "Klik button +Penilaian pada hover", "Klik \"Import dari Neon Uji\"", "Pilih salah satu tipe penilaian", "Pilih salah satu jenjang pendidikan", "Pilih jenis penilaian \"Kelompok Belajar\"", "Pilih salah satu kelompok belajar", "Pilih salah satu tipe penilaian", "Klik button \"Lanjutkan\"", "Pada tab Nilai, pilih salah satu Data Komponen Penilaian", "Klip dropdown quiz dan pilih salah satu quiz IRT yang akan diimpor", "Klik button Terapkan Nilai", "Pastikan semua quiz pada komponen penilaian terisi", "Klik button Hasilkan Penilaian", "Klik button Publikasikan nilai"],
+    "case": "Positive",
+    "status": "Failed",
+    "details": "",
+    "priority": "Low",
+    "media": []
+  },
+  {
+    "no": 20,
+    "testCase": "Melakukan proses import skor saat Data attempt tidak ditemukan",
+    "expectedResult": ["Sistem menampilkan pop-up \"data sedang diproses\"", "Setelah selesai diproses, sistem menampilkan error message jika data siswa tidak ditemukan"],
+    "steps": ["User login ke aplikasi Neutron", "Masuk ke halaman menu Penilaian", "Klik button +Penilaian pada hover", "Klik \"Import dari Neon Uji\"", "Pilih salah satu tipe penilaian", "Pilih salah satu jenjang pendidikan", "Pilih salah satu jenis penilaian", "Pilih salah satu siswa", "Pilih salah satu tipe penilaian", "Klik button \"Lanjutkan\"", "Pada tab Nilai, pilih salah satu Data Komponen Penilaian", "Klik dropdown quiz dan pilih salah satu quiz yang akan diimpor", "Klik button Terapkan Nilai", "Pastikan semua quiz pada komponen penilaian terisi", "Pastikan juga data attempt tidak ada", "Klik button Hasilkan Penilaian"],
+    "case": "Negative",
+    "status": "Passed",
+    "details": "",
+    "priority": "Low",
+    "media": []
+  },
+  {
+    "no": 21,
+    "testCase": "User mempublikasikan nilai",
+    "expectedResult": ["User kembali ke halaman koleksi penilaian", "Sistem menampilkan data-data penilaian"],
+    "steps": ["User login ke aplikasi Neutron", "Masuk ke halaman menu Penilaian", "Klik button +Penilaian pada hover", "Klik \"Import dari Neon Uji\"", "Pilih salah satu tipe penilaian", "Pilih salah satu jenjang pendidikan", "Pilih jenis penilaian \"Siswa\"", "Pilih salah satu siswa", "Pilih salah satu tipe penilaian", "Klik button \"Lanjutkan\"", "Pada tab Nilai, pilih salah satu Data Komponen Penilaian", "Klik dropdown quiz dan pilih salah satu quiz yang akan diimpor", "Klik button Terapkan Nilai", "Pastikan semua quiz pada komponen penilaian terisi", "Klik button Hasilkan Penilaian", "Klik button Publikasikan nilai"],
+    "case": "Positive",
+    "status": "Failed",
+    "details": "Issue: Whitespace terlalu besar\nEkspektasi: Whitespace tidak terlalu besar\nAdditional Issue: Ketika button close pada notifikasi di klik, modal penilaian otomatis ikut tertutup\nEkspektasi: Walaupun notifikasi di close, modal penilaian tidak terganggu",
+    "priority": "Low",
+    "media": ["C:\\tmp\\coda-media\\row-21-image-1.webp"]
+  }
+]
