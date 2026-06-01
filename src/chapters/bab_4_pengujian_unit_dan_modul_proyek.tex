@@ -4,11 +4,11 @@
 \begingroup
 \renewcommand{\arraystretch}{1.15}
 \noindent\begin{tabularx}{\linewidth}{@{}p{3.6cm}@{\hspace{0.2cm}}p{0.2cm}@{\hspace{0.2cm}}X@{}}
-    \textbf{Kode Mata Kuliah} & : & MII21-3015 \\
-    \textbf{Nama Mata Kuliah} & : & Internship: Pengujian Unit dan Modul Proyek \\
-    \textbf{Bobot} & : & 3 SKS \\
-    \textbf{Bentuk Kegiatan} & : & Magang MBKM sebagai Software Engineer Intern di PT Vortex Buana Edumedia \\
-    \textbf{Proyek Terkait} & : & Pengujian fitur Import Nilai Neon Uji dan validasi dokumentasi komponen Neon Interfaces \\
+	\textbf{Kode Mata Kuliah} & : & MII21-3015                                                                              \\
+	\textbf{Nama Mata Kuliah} & : & Internship: Pengujian Unit dan Modul Proyek                                             \\
+	\textbf{Bobot}            & : & 3 SKS                                                                                   \\
+	\textbf{Bentuk Kegiatan}  & : & Magang MBKM sebagai Software Engineer Intern di PT Vortex Buana Edumedia                \\
+	\textbf{Proyek Terkait}   & : & Pengujian fitur Import Nilai Neon Uji dan validasi dokumentasi komponen Neon Interfaces \\
 \end{tabularx}
 \par\vspace{0.5\baselineskip}
 \endgroup
@@ -16,9 +16,18 @@
 Mata kuliah ini berfokus pada kemampuan melakukan pengujian terhadap unit dan modul perangkat lunak agar sistem yang dikembangkan memiliki perilaku yang sesuai dengan kebutuhan. Dalam kegiatan magang, pengujian dilakukan pada fitur Import Nilai Neon Uji di repositori Pendidikan serta pada dokumentasi komponen Neon Interfaces yang ditampilkan melalui Storybook.
 
 \section{Silabus}
-Silabus mata kuliah mencakup pemahaman tujuan pengujian perangkat lunak, penyusunan skenario uji, pemeriksaan unit dan modul, validasi masukan dan keluaran, pelacakan kesalahan, debugging, serta dokumentasi hasil pengujian. Pengujian dilakukan untuk memastikan setiap bagian sistem bekerja sesuai rancangan sebelum digunakan dalam alur kerja yang lebih besar.
+Mahasiswa dapat menyusun desain pengujian unit dari perangkat lunak\slash modul\slash subsistem\slash prototip dan melakukan pengujian dengan mengunakan data uji untuk/dari kegiatan internship/MBKM. Deskripsi pengujian unit/modul dapat meliputi hal hal berikut:
+\begin{enumerate}
+	\item Deskripsi umum pengujian (tujuan pengujian, strategi/metode pengujian)
+	\item Tool pengujian, library, add-in; atau plag-in, atau hardware (yang digunakan);
+	\item Daftar unit/fitur/modul yang akan diujikan
+	\item Desain daftar/tabel kasus pengujian, atau list of test cases (yang memuat kolom-kolom seperti: nomor, nama unit/modul/komponen/subprogram, data-data uji, metode/cara pengujian, prediksi hasil uji)
+	\item Hasil/luaran pengujian; atau validasi/verifikasi, dan pembasahan dari hasil uji.
+\end{enumerate}
 
-Dalam konteks proyek magang, pengujian tidak hanya dilakukan untuk menemukan kesalahan teknis, tetapi juga untuk memastikan bahwa fitur dapat digunakan secara konsisten oleh pengguna internal. Hal ini penting pada fitur Import Nilai Neon Uji karena kesalahan pada proses pemilihan data, pemetaan kuis, atau publikasi nilai dapat memengaruhi keakuratan hasil penilaian siswa.
+% Silabus mata kuliah mencakup pemahaman tujuan pengujian perangkat lunak, penyusunan skenario uji, pemeriksaan unit dan modul, validasi masukan dan keluaran, pelacakan kesalahan, debugging, serta dokumentasi hasil pengujian. Pengujian dilakukan untuk memastikan setiap bagian sistem bekerja sesuai rancangan sebelum digunakan dalam alur kerja yang lebih besar.
+
+% Dalam konteks proyek magang, pengujian tidak hanya dilakukan untuk menemukan kesalahan teknis, tetapi juga untuk memastikan bahwa fitur dapat digunakan secara konsisten oleh pengguna internal. Hal ini penting pada fitur Import Nilai Neon Uji karena kesalahan pada proses pemilihan data, pemetaan kuis, atau publikasi nilai dapat memengaruhi keakuratan hasil penilaian siswa.
 
 \section{Aktivitas}
 Aktivitas pengujian utama dilakukan pada fitur Import Nilai Neon Uji. Pengujian disusun berdasarkan alur penggunaan fitur, mulai dari pemilihan filter informasi penilaian, pemuatan data siswa atau kelompok belajar, pemilihan tipe penilaian, pengambilan quiz set, pembuatan komponen penilaian, pemetaan kuis, pratinjau data nilai, hingga publikasi nilai. Setiap tahap diuji untuk memastikan data yang tampil sesuai dengan pilihan pengguna dan perubahan pada satu bagian alur tidak merusak tahap berikutnya.
@@ -40,26 +49,26 @@ Konsep lain yang berkaitan adalah debugging dan regresi. Debugging dilakukan unt
 Ringkasan skenario pengujian yang dilakukan dapat dilihat pada Tabel~\ref{tab:ringkasan_pengujian_import_neon_uji}. Daftar lengkap berisi 21 item pengujian disimpan pada Coda dan didokumentasikan sebagai tangkapan layar pada lampiran.
 
 \begin{table}[htbp]
-\centering
-\caption{Ringkasan skenario pengujian fitur Import Nilai Neon Uji}
-\label{tab:ringkasan_pengujian_import_neon_uji}
-\begin{tabular}{|p{0.7cm}|p{4.2cm}|p{5.3cm}|p{2.1cm}|}
-\hline
-\textbf{No} & \textbf{Skenario} & \textbf{Hasil yang Diharapkan} & \textbf{Status} \\
-\hline
-1 & Memilih filter informasi penilaian & Data turunan seperti siswa, kelompok belajar, tipe penilaian, dan quiz set tampil sesuai konteks yang dipilih & Sesuai \\
-\hline
-2 & Membuat komponen penilaian & Sistem menampilkan daftar komponen penilaian yang dapat dipetakan dengan quiz set & Sesuai \\
-\hline
-3 & Memetakan quiz set ke komponen penilaian & Komponen penilaian tersambung dengan quiz yang dipilih dan dapat digunakan pada tahap pratinjau & Sesuai \\
-\hline
-4 & Menampilkan pratinjau nilai & Sistem menampilkan data nilai berdasarkan attempt Neon Uji yang valid & Sesuai \\
-\hline
-5 & Mempublikasikan nilai & Sistem membuat data grading dan score sesuai data pratinjau & Sesuai \\
-\hline
-6 & Menangani data kosong atau attempt belum selesai & Sistem tidak mempublikasikan data tidak valid dan memberikan informasi yang dapat dipahami pengguna & Sesuai \\
-\hline
-\end{tabular}
+	\centering
+	\caption{Ringkasan skenario pengujian fitur Import Nilai Neon Uji}
+	\label{tab:ringkasan_pengujian_import_neon_uji}
+	\begin{tabularx}{\textwidth}{|c|>{\raggedright\arraybackslash}p{4.4cm}|>{\raggedright\arraybackslash}X|c|}
+		\hline
+		\textbf{No} & \textbf{Skenario}                                & \textbf{Hasil yang Diharapkan}                                                                                & \textbf{Status} \\
+		\hline
+		1           & Memilih filter informasi penilaian               & Data turunan seperti siswa, kelompok belajar, tipe penilaian, dan quiz set tampil sesuai konteks yang dipilih & Sesuai          \\
+		\hline
+		2           & Membuat komponen penilaian                       & Sistem menampilkan daftar komponen penilaian yang dapat dipetakan dengan quiz set                             & Sesuai          \\
+		\hline
+		3           & Memetakan quiz set ke komponen penilaian         & Komponen penilaian tersambung dengan quiz yang dipilih dan dapat digunakan pada tahap pratinjau               & Sesuai          \\
+		\hline
+		4           & Menampilkan pratinjau nilai                      & Sistem menampilkan data nilai berdasarkan attempt Neon Uji yang valid                                         & Sesuai          \\
+		\hline
+		5           & Mempublikasikan nilai                            & Sistem membuat data grading dan score sesuai data pratinjau                                                   & Sesuai          \\
+		\hline
+		6           & Menangani data kosong atau attempt belum selesai & Sistem tidak mempublikasikan data tidak valid dan memberikan informasi yang dapat dipahami pengguna           & Sesuai          \\
+		\hline
+	\end{tabularx}
 \end{table}
 
 \section{Hasil dan Pembahasan}

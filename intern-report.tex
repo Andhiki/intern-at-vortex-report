@@ -1,8 +1,5 @@
 \documentclass[12pt,a4paper,oneside]{report}
-\makeatletter
-\def\input@path{{src/styles/}}
-\makeatother
-\usepackage{report_style} % Memanggil file style custom
+\usepackage{src/styles/report_style}
 
 \begin{document}
 \hypersetup{pageanchor=false}
@@ -42,10 +39,11 @@
 \include{src/chapters/bab_6_penutup}
 
 % --- BAGIAN AKHIR ---
-\clearpage
-\addcontentsline{toc}{chapter}{Daftar Pustaka}
-\bibliographystyle{ieeetr}
-\bibliography{src/bibliography/references}
+% Daftar Pustaka diaktifkan jika laporan sudah memiliki sitasi.
+% \clearpage
+% \addcontentsline{toc}{chapter}{Daftar Pustaka}
+% \bibliographystyle{ieeetr}
+% \bibliography{src/bibliography/references}
 
 % --- LAMPIRAN ---
 \clearpage
