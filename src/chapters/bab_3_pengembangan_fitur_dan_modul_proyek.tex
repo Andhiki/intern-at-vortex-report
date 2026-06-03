@@ -7,7 +7,6 @@
 	\textbf{Kode Mata Kuliah} & : & MII21-3011                                                                 \\
 	\textbf{Nama Mata Kuliah} & : & Internship: Pengembangan Fitur dan Modul Proyek                            \\
 	\textbf{Bobot}            & : & 4 SKS                                                                      \\
-	\textbf{Bentuk Kegiatan}  & : & Magang MBKM sebagai Software Engineer Intern di PT Vortex Buana Edumedia   \\
 	\textbf{Proyek Terkait}   & : & Neon Interfaces dan fitur Import Nilai Neon Uji pada repositori Pendidikan \\
 \end{tabularx}
 \par\vspace{0.5\baselineskip}
@@ -51,6 +50,74 @@ Pengembangan fitur juga berkaitan dengan integrasi data dan validasi alur. Data 
 Hasil utama dari pelaksanaan mata kuliah ini adalah meningkatnya kemampuan menerapkan proses pengembangan fitur secara utuh, mulai dari memahami kebutuhan hingga menghasilkan modul yang dapat digunakan dalam sistem. Pada Neon Interfaces, kontribusi yang dilakukan mendukung tersedianya dokumentasi komponen antarmuka melalui Storybook. Dokumentasi tersebut membantu anggota tim memahami variasi komponen, properti yang tersedia, serta cara penggunaan komponen secara konsisten.
 
 Pada fitur Import Nilai Neon Uji, pengembangan modul membantu menyusun alur import nilai yang lebih terstruktur. Pengguna dapat memilih konteks penilaian, menghubungkan quiz set dengan komponen penilaian, melihat pratinjau nilai, dan mempublikasikan data nilai ke sistem Pendidikan. Fitur ini mengurangi kebutuhan pemindahan data secara manual dan membantu menjaga konsistensi nilai yang berasal dari Neon Uji.
+
+Gambar~\ref{fig:output_project_neon} menunjukkan ringkasan output dari pekerjaan yang dilakukan, yaitu dokumentasi komponen pada Neon Interfaces serta alur integrasi Import Nilai Neon Uji pada aplikasi Neutron. Slide ini memperlihatkan hasil pengembangan dalam satu tampilan, mulai dari dokumentasi Storybook hingga tampilan pemilihan penilaian, pemetaan komponen, dan publikasi nilai.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.95\textwidth]{assets/images/output.jpg}
+	\caption{Ringkasan output proyek Neon Interfaces dan integrasi Neon Uji pada aplikasi Neutron}
+	\label{fig:output_project_neon}
+\end{figure}
+
+Salah satu bagian penting pada implementasi fitur berada pada composable \texttt{useImportNeonUji.ts}. Bagian ini bertanggung jawab membentuk data awal komponen penilaian berdasarkan tipe penilaian yang dipilih pengguna. Kode mengambil daftar komponen penilaian dari service, memvalidasi data kosong, lalu menyiapkan nama tipe penilaian untuk ditampilkan pada tabel pemetaan quiz.
+
+\begin{lstlisting}[language=JavaScript, caption={Cuplikan pembentukan data komponen penilaian Import Neon Uji}, label={lst:generate_grading_components}]
+async function generateGradingComponentsData(client) {
+  const gradingTypeId = filters.value.tipePenilaian
+  if (!gradingTypeId) {
+    return []
+  }
+
+  const componentsQuery = Query.define({
+    filter: { gradingTypeId },
+    limit: 99999,
+  })
+  const gradingComponents = await getGradingComponentsByType(
+    client,
+    componentsQuery,
+  )
+
+  if (gradingComponents.length === 0) {
+    return []
+  }
+
+  const gradingTypeName
+    = gradingComponents[0]?.gradingType?.name
+    || gradingComponents[0]?.gradingType?.display
+    || '-'
+}
+\end{lstlisting}
+
+Setelah komponen penilaian didapatkan, modul perlu membaca target yang dipilih pengguna. Target dapat berupa siswa langsung atau kelompok belajar. Pada alur siswa, ID target dinormalisasi menjadi array, lalu data siswa dimuat dari service agar nama siswa dan cabang dapat dipakai sebagai baris pratinjau nilai.
+
+\begin{lstlisting}[language=JavaScript, caption={Cuplikan pengambilan target siswa pada fitur Import Neon Uji}, label={lst:target_students_import_neon_uji}]
+const targetIds = Array.isArray(filters.value.target)
+  ? filters.value.target
+  : filters.value.target
+    ? [filters.value.target]
+    : []
+
+if (targetIds.length === 0) {
+  return []
+}
+
+if (filters.value.jenisPenilaian === 'siswa') {
+  const studentsQuery = Query.define({
+    ids: targetIds,
+    limit: 99999,
+  })
+  const students = await getStudentsByStage(client, studentsQuery)
+  targetData = students.map(student => ({
+    id: String(student.id),
+    name: student.name || student.display || '',
+    branches: (student.branches || []).map(branch => ({
+      id: String(branch.id || ''),
+      name: branch.name || '',
+    })),
+  }))
+}
+\end{lstlisting}
 
 Pembahasan dari kegiatan ini menunjukkan bahwa pengembangan fitur di industri memerlukan keseimbangan antara aspek teknis dan pemahaman domain. Keputusan teknis perlu mempertimbangkan dampaknya terhadap pengguna, pemeliharaan sistem, dan kesesuaian dengan proses bisnis. Umpan balik dari pembimbing dan anggota tim menjadi bagian penting karena membantu memastikan bahwa fitur yang dibuat tidak hanya selesai secara implementasi, tetapi juga relevan dengan kebutuhan perusahaan.
 
