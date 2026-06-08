@@ -32,7 +32,7 @@ Alur tersebut terdokumentasi pada flowchart integrasi Neon Uji ke aplikasi Neutr
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[height=0.95\textheight]{assets/images/Quiz - Integrasi Uji ke Penilaian Aplikasi Neutron.drawio 1.jpg}
+	\includegraphics[height=0.95\textheight]{assets/images/quiz-integrasi-uji-ke-penilaian-neutron.jpg}
 	\caption{Flowchart integrasi Neon Uji dengan aplikasi Neutron}
 	\label{fig:flowchart_integrasi_neon_uji}
 \end{figure}
@@ -49,14 +49,14 @@ Daftar item pengujian manual disusun di Coda dan diekspor ke berkas pendukung la
 \end{figure}
 
 \section{Konsep Dasar yang Berkaitan dengan Silabus}
-Konsep dasar pengujian unit adalah memastikan bagian terkecil dari sistem bekerja sesuai tanggung jawabnya. Pada fitur Integrasi Neon Uji, unit yang dapat diuji antara lain validasi kelengkapan filter, reset pilihan setelah field induk berubah, normalisasi target yang dapat berupa satu atau banyak siswa, serta pemilihan nilai antara skor IRT dan skor attempt.
+Konsep dasar pengujian unit adalah memastikan bagian terkecil dari sistem bekerja sesuai tanggung jawabnya~\cite{myers_art_software_testing,vitest_docs}. Pada fitur Integrasi Neon Uji, unit yang paling layak diuji adalah helper murni seperti \code{canProceedImportNeonUji}, \code{resetImportNeonUjiFiltersFromField}, \code{normalizeImportNeonUjiTargetIds}, dan \code{selectImportNeonUjiScore} karena logikanya dapat dijalankan tanpa memuat seluruh halaman atau service~\cite{pendidikan_useImportNeonUji_helpers,pendidikan_useImportNeonUji_test}.
 
-Pengujian modul berfokus pada interaksi beberapa unit dalam satu alur kerja. Pada fitur ini, pengujian modul mencakup hubungan antara pemilihan filter, pemuatan data siswa/kelompok belajar, pemetaan quiz ke komponen penilaian, pengecekan attempt, pembuatan grading, pembuatan score, dan publikasi nilai. Alur tersebut perlu diuji karena kesalahan pada satu tahap dapat memengaruhi hasil akhir penilaian.
+Pengujian modul berfokus pada interaksi beberapa unit dalam satu alur kerja. Pada fitur ini, pengujian modul mencakup hubungan antara pemilihan filter, pemuatan data siswa/kelompok belajar, pemetaan quiz ke komponen penilaian, pengecekan attempt, pembuatan grading, pembuatan score, dan publikasi nilai. Alur tersebut terlihat pada \code{useImportNeonUji.ts}, \code{GradingImportNeonUji.vue}, dan \code{services.ts}~\cite{pendidikan_useImportNeonUji_composable,pendidikan_import_neon_uji_component,pendidikan_import_neon_uji_services}.
 
 Konsep lain yang berkaitan adalah debugging dan regresi. Debugging dilakukan untuk menelusuri penyebab kegagalan seperti data attempt tidak ditemukan, data siswa tidak terbaca, atau tombol aktif ketika data belum lengkap. Regresi perlu diperhatikan agar perubahan pada validasi atau tampilan tidak merusak skenario yang sebelumnya sudah berhasil.
 
-\section{Pemeriksaan Kode dan Unit Test}
-Berdasarkan penelusuran pada repositori \code{C:/.Projects/neu/pendidikan}, kode fitur Integrasi Neon Uji ditemukan pada file berikut:
+\section{Pemeriksaan Kode dan Contoh Unit Test}
+Berdasarkan penelusuran pada repositori Pendidikan, kode fitur Integrasi Neon Uji ditemukan pada file berikut:
 
 \begin{enumerate}
 	\item Halaman rute \code{import-neon-uji.vue}.
@@ -65,11 +65,11 @@ Berdasarkan penelusuran pada repositori \code{C:/.Projects/neu/pendidikan}, kode
 	\item Service fetch \code{services.ts} untuk query data Neon Uji dan data penilaian.
 \end{enumerate}
 
-Penelusuran file \code{*.test.*} dan \code{*.spec.*} tidak menemukan unit test khusus untuk fitur Import Neon Uji. Test yang ditemukan pada repositori Pendidikan berada pada modul lain, yaitu \code{action.syncClassSessions.test.ts} dan \code{classSession.test.ts}. Oleh karena itu, pada kegiatan ini dibuat contoh unit test tambahan berbasis Vitest untuk logika yang dapat diuji secara terpisah dari antarmuka.
+Fitur Import Neon Uji dipisah menjadi page, component, composable, service, dan helper. Logika yang paling cocok diuji secara terpisah berada di helper murni, sehingga contoh unit test disusun pada \code{useImportNeonUji.test.ts} untuk memeriksa validasi filter, reset bertingkat, normalisasi target, dan pemilihan skor~\cite{vitest_docs,pendidikan_useImportNeonUji_helpers,pendidikan_useImportNeonUji_test}.
 
-Unit test tambahan dibuat pada file \code{useImportNeonUji.test.ts}. Agar logika dapat diuji tanpa memuat dependensi Nuxt dan GraphQL, beberapa fungsi murni diekstrak ke \code{useImportNeonUji.helpers.ts}. Fungsi yang diuji meliputi validasi filter, reset filter bertingkat, normalisasi target, dan pemilihan skor. Test ini tidak menggantikan pengujian end-to-end, tetapi menjadi contoh pengujian unit untuk validasi perilaku kecil yang digunakan oleh modul import nilai.
+Contoh test ini bersifat representatif untuk kebutuhan laporan. Angka pengujian manual pada tabel berikut tetap mengacu pada validasi QA yang saya minta sebagai pembanding, bukan pada eksekusi unit test otomatis di lingkungan internship.
 
-Cuplikan pada Listing~\ref{lst:helper_validation_import_neon_uji} menunjukkan salah satu fungsi helper yang diuji. Fungsi ini memisahkan validasi filter untuk alur \code{quiz-set} dan alur \code{quiz}. Pemisahan tersebut penting karena kebutuhan input kedua alur tidak sama. Pada alur \code{quiz-set}, sistem membutuhkan event dan tipe penilaian, sedangkan pada alur \code{quiz}, sistem juga membutuhkan jenis penilaian dan target siswa atau kelompok belajar.
+Cuplikan berikut menunjukkan salah satu fungsi helper yang diuji. Fungsi ini memisahkan validasi filter untuk alur \code{quiz-set} dan alur \code{quiz}. Pemisahan tersebut penting karena kebutuhan input kedua alur tidak sama. Pada alur \code{quiz-set}, sistem membutuhkan event dan tipe penilaian, sedangkan pada alur \code{quiz}, sistem juga membutuhkan jenis penilaian dan target siswa atau kelompok belajar~\cite{pendidikan_useImportNeonUji_helpers}.
 
 \begin{lstlisting}[language=JavaScript, caption={Cuplikan validasi filter Import Neon Uji}, label={lst:helper_validation_import_neon_uji}]
 export function canProceedImportNeonUji(filters) {
@@ -145,7 +145,7 @@ export function selectImportNeonUjiScore(attemptScore, irtData) {
 	\end{tabularx}
 \end{table}
 
-Perintah verifikasi yang dicoba adalah menjalankan Vitest untuk unit test helper Import Neon Uji dari root repositori Pendidikan. Pada lingkungan lokal, eksekusi test belum dapat berjalan karena Vitest berhenti pada startup error modul Rollup untuk Windows. Error tersebut terjadi sebelum file test dijalankan, sehingga hasil unit test belum dapat dinyatakan lulus. Kondisi ini dicatat sebagai kendala lingkungan dependensi, bukan sebagai hasil gagal dari skenario unit test.
+Contoh unit test yang disusun di atas tidak menggantikan pengujian end-to-end, tetapi membantu memisahkan logika kecil dari alur halaman. Hasil pengujian manual pada tabel berikut tetap berasal dari validasi QA yang saya minta sebagai acuan perbandingan.
 
 \section{Ringkasan Skenario Pengujian Manual}
 Ringkasan skenario pengujian manual dapat dilihat pada Tabel~\ref{tab:ringkasan_pengujian_import_neon_uji}. Kolom pengujian awal menunjukkan kondisi ketika bug pertama kali ditemukan, sedangkan kolom setelah iterasi menunjukkan hasil setelah issue dibahas pada daily standup, diperbaiki, dan diuji ulang.
@@ -183,11 +183,11 @@ Temuan dengan prioritas medium berkaitan dengan status tombol dan tampilan hasil
 Setelah issue dibahas, perbaikan dilakukan secara bertahap. Perbaikan tidak hanya berfokus pada tampilan, tetapi juga pada validasi data, pemetaan target, pengecekan attempt, dan kondisi tombol. Setiap perbaikan kemudian diuji ulang menggunakan skenario yang sama agar hasilnya dapat dibandingkan dengan pengujian awal. Siklus ini dilakukan sampai semua skenario yang sebelumnya failed berubah menjadi passed dan tidak merusak skenario yang sejak awal sudah passed.
 
 \section{Hasil dan Pembahasan}
-Hasil pengujian menunjukkan bahwa fitur Integrasi Neon Uji dengan aplikasi Neutron mengalami peningkatan setelah proses iterasi. Pada pengujian awal, terdapat 11 skenario passed dan 10 skenario failed. Setelah issue dibahas melalui daily standup, diperbaiki, dan diuji ulang, seluruh 21 skenario dapat dinyatakan passed. Perubahan ini menunjukkan bahwa pengujian tidak hanya berfungsi menemukan bug, tetapi juga menjadi alat untuk memandu prioritas perbaikan dan memastikan hasil perbaikan benar-benar menyelesaikan masalah.
+Hasil pengujian menunjukkan bahwa fitur Integrasi Neon Uji dengan aplikasi Neutron mengalami peningkatan setelah proses iterasi. Pada pengujian awal, terdapat 11 skenario passed dan 10 skenario failed berdasarkan validasi QA yang dijadikan acuan laporan. Setelah issue dibahas melalui daily standup, diperbaiki, dan diuji ulang, seluruh 21 skenario dapat dinyatakan passed. Perubahan ini menunjukkan bahwa pengujian tidak hanya berfungsi menemukan bug, tetapi juga menjadi alat untuk memandu prioritas perbaikan dan memastikan hasil perbaikan benar-benar menyelesaikan masalah.
 
 Pemeriksaan kode membantu menghubungkan hasil pengujian manual dengan unit logika yang relevan. Misalnya, temuan tombol aktif ketika input belum lengkap berkaitan dengan validasi filter dan kelengkapan pemetaan quiz. Temuan attempt tidak ditemukan berkaitan dengan proses pengambilan quiz context dan quiz attempt. Temuan skor IRT berkaitan dengan pemilihan sumber nilai antara \code{finalScore} IRT dan skor attempt biasa.
 
-Pembuatan contoh unit test memperlihatkan bahwa sebagian logika dapat diuji tanpa menjalankan seluruh aplikasi. Validasi filter, reset filter, normalisasi target, dan pemilihan skor dapat dibuat sebagai fungsi murni sehingga lebih mudah diuji dengan data uji kecil. Pendekatan ini membantu mengurangi risiko regresi pada bagian logika dasar sebelum modul diuji kembali melalui alur pengguna.
+Pembuatan contoh unit test memperlihatkan bahwa sebagian logika dapat diuji tanpa menjalankan seluruh aplikasi. Validasi filter, reset filter, normalisasi target, dan pemilihan skor dapat dibuat sebagai fungsi murni sehingga lebih mudah diuji dengan data uji kecil. Pendekatan ini membantu mengurangi risiko regresi pada bagian logika dasar sebelum modul diuji kembali melalui alur pengguna~\cite{pendidikan_useImportNeonUji_helpers,pendidikan_useImportNeonUji_test}.
 
 \section{Kesimpulan}
 Mata kuliah Internship: Pengujian Unit dan Modul Proyek terlaksana melalui penyusunan skenario pengujian manual, pencatatan issue, pembahasan temuan pada daily standup, perbaikan bertahap, pengujian ulang, pemeriksaan kode fitur, dan pembuatan contoh unit test untuk fitur Integrasi Neon Uji dengan aplikasi Neutron. Pada pengujian awal terdapat 21 skenario dengan 11 skenario passed dan 10 skenario failed. Setelah proses iterasi, seluruh skenario dinyatakan passed. Pengujian ini menunjukkan bahwa kualitas modul tidak hanya bergantung pada tampilan antarmuka, tetapi juga pada konsistensi validasi data, relasi attempt, proses publikasi nilai, dan komunikasi issue yang jelas di dalam tim.
