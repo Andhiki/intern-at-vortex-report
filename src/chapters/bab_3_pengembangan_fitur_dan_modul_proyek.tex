@@ -59,8 +59,7 @@ Tabel~\ref{tab:pemetaan_silabus_bab3} menunjukkan pemetaan antara poin silabus d
 	\end{tabularx}
 \end{table}
 
-\subsection{Pemetaan Silabus dan Rancangan Fitur}
-\subsubsection{Alur Bisnis dan Model Data Konseptual}
+\section{Aktivitas}
 Alur bisnis fitur Import Nilai Neon Uji dimulai dari pengguna yang memilih sumber data dari Neon Uji, menentukan tipe hasil penilaian, memilih jenjang studi dan target, memetakan quiz ke komponen penilaian, melihat pratinjau nilai, lalu mempublikasikan nilai ke Neutron. Alur ini terdokumentasi secara lengkap pada flowchart di Bab~\ref{chap:pengujian} (Gambar~\ref{fig:flowchart_integrasi_neon_uji}).
 
 Model alur data pada Gambar~\ref{fig:model_data_import_neon_uji} menunjukkan bahwa import nilai bergantung pada relasi antara siswa di Neutron Office dan data pengerjaan quiz di Neon Uji. Setelah pengguna memilih siswa dan quiz, sistem mengambil \textit{Quiz Context} berdasarkan quiz yang dipilih, lalu mencocokkan \code{student.userId} dengan \code{userId} pada \textit{Quiz Context}. Dari context yang sesuai, sistem mengambil \textit{Quiz Attempt} berstatus selesai. Proses import hanya dapat dilakukan apabila setiap siswa pada target dan setiap quiz yang dipetakan memiliki attempt yang valid serta nilai yang dapat diambil. Jika ada siswa yang belum memiliki attempt untuk quiz yang dipilih, proses import perlu diblokir dan sistem menampilkan pesan kesalahan agar nilai tidak terpublikasi secara parsial.
@@ -101,7 +100,6 @@ Model alur data pada Gambar~\ref{fig:model_data_import_neon_uji} menunjukkan bah
 	\label{fig:model_data_import_neon_uji}
 \end{figure}
 
-\section{Aktivitas}
 Pada proyek Neon Interfaces, aktivitas pengembangan diarahkan pada penyusunan dokumentasi komponen dan penguatan \textit{design library} berbasis \textit{shadcn/ui}. Pekerjaan ini dilakukan melalui Storybook~\cite{storybook_docs,shadcn_ui} yang berfungsi sebagai media dokumentasi interaktif untuk komponen antarmuka. Komponen seperti \textit{button}, \textit{badge}, dan \textit{textarea} didokumentasikan dengan variasi properti, contoh penggunaan, serta dukungan tema seperti \textit{neon}, \textit{belajar}, dan \textit{uji}. Dokumentasi tersebut membantu menjaga konsistensi antarmuka dan mempercepat proses penggunaan ulang komponen pada proyek lain.
 
 Pada repositori Pendidikan, aktivitas pengembangan berfokus pada fitur Import Nilai Neon Uji. Di dalam kode, fitur ini dibagi menjadi dua alur hasil penilaian, yaitu \code{quiz} dan \code{quiz-set}; alur \code{quiz} membutuhkan target siswa atau kelompok belajar, sedangkan alur \code{quiz-set} memakai event dan tipe penilaian setelah jenjang studi dipilih~\cite{pendidikan_useImportNeonUji_composable,pendidikan_useImportNeonUji_helpers}. Alur fitur mencakup pemilihan informasi penilaian melalui filter bertingkat, pembuatan komponen penilaian, pemetaan kuis terhadap komponen penilaian, pratinjau data nilai, dan publikasi nilai ke sistem. Pengembangan fitur ini membutuhkan pemahaman terhadap relasi antara data siswa, kelompok belajar, tipe penilaian, komponen penilaian, quiz set, \textit{attempt} (upaya pengerjaan kuis), dan nilai akhir.
