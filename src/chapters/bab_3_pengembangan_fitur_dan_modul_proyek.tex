@@ -62,36 +62,41 @@ Tabel~\ref{tab:pemetaan_silabus_bab3} menunjukkan pemetaan antara poin silabus d
 \subsection{Alur Bisnis dan Model Data Konseptual}
 Alur bisnis fitur Import Nilai Neon Uji dimulai dari pengguna yang memilih sumber data dari Neon Uji, menentukan tipe hasil penilaian, memilih jenjang studi dan target, memetakan quiz ke komponen penilaian, melihat pratinjau nilai, lalu mempublikasikan nilai ke Neutron. Alur ini terdokumentasi secara lengkap pada flowchart di Bab~\ref{chap:pengujian} (Gambar~\ref{fig:flowchart_integrasi_neon_uji}).
 
-Model data konseptual pada Gambar~\ref{fig:model_data_import_neon_uji} menunjukkan entitas utama yang terlibat dalam fitur Import Nilai Neon Uji beserta relasinya. Entitas \textit{Jenjang Studi} menjadi konteks awal yang menghubungkan \textit{Siswa} atau \textit{Kelompok Belajar} sebagai target penilaian. Dari jenjang studi, \textit{Quiz Set} atau \textit{Quiz} dipilih sebagai sumber data dari Neon Uji. \textit{Komponen Penilaian} menjadi jembatan antara konteks penilaian dan quiz yang dipetakan. \textit{Attempt} (upaya pengerjaan kuis) merekam riwayat pengerjaan kuis oleh siswa, sedangkan \textit{Nilai IRT} (\textit{Item Response Theory}) menyimpan skor akhir yang dihasilkan dari proses penilaian.
+Model alur data pada Gambar~\ref{fig:model_data_import_neon_uji} menunjukkan bahwa import nilai bergantung pada relasi antara siswa di Neutron Office dan data pengerjaan quiz di Neon Uji. Setelah pengguna memilih siswa dan quiz, sistem mengambil \textit{Quiz Context} berdasarkan quiz yang dipilih, lalu mencocokkan \code{student.userId} dengan \code{QuizContext.userId}. Dari context yang sesuai, sistem mengambil \textit{Quiz Attempt} berstatus selesai. Import hanya valid apabila setiap siswa dan setiap quiz yang dipetakan memiliki attempt bernilai. Jika ada siswa yang belum memiliki attempt untuk quiz yang dipilih, proses import perlu diblokir dan sistem menampilkan pesan kesalahan agar nilai tidak terpublikasi secara parsial.
 
 \begin{figure}[htbp]
 	\centering
-	\scalebox{0.92}{
+	\scalebox{0.82}{
 	\begin{tikzpicture}[
-		node distance=0.8cm and 1.0cm,
-		every node/.style={draw, rounded corners, minimum width=1.6cm, minimum height=0.55cm, align=center, font=\scriptsize},
+		node distance=0.75cm and 0.9cm,
+		process/.style={draw, rounded corners, minimum width=2.9cm, minimum height=0.65cm, align=center, font=\scriptsize},
+		decision/.style={draw, diamond, aspect=2.2, inner sep=1pt, minimum width=2.8cm, align=center, font=\scriptsize},
+		result/.style={draw, rounded corners, minimum width=3.2cm, minimum height=0.65cm, align=center, font=\scriptsize, fill=gray!10},
 		arrow/.style={->, >=stealth, semithick}
 	]
-		\node (jenjang) {Jenjang\\Studi};
-		\node (siswa) [below left=of jenjang] {Siswa};
-		\node (kelompok) [below right=of jenjang] {Kelompok\\Belajar};
-		\node (quizset) [right=1.5cm of jenjang] {Quiz Set};
-		\node (quiz) [below=of quizset] {Quiz};
-		\node (komponen) [right=1.5cm of quizset] {Komponen\\Penilaian};
-		\node (attempt) [below=of komponen] {Attempt\\\scriptsize(upaya pengerjaan)};
-		\node (nilai) [right=1.5cm of komponen] {Nilai IRT\\\scriptsize(\textit{Item Response Theory})};
+		\node[process] (select) {User memilih\\siswa dan quiz};
+		\node[process, below=of select] (contexts) {Fetch \textit{Quiz Context}\\berdasarkan quiz};
+		\node[decision, below=of contexts] (contextValid) {Semua siswa punya\\context sesuai\\\texttt{student.userId}?};
+		\node[process, below=of contextValid] (attempts) {Fetch \textit{Quiz Attempt}\\berstatus selesai};
+		\node[decision, below=of attempts] (attemptValid) {Semua siswa punya\\attempt untuk quiz\\yang dipilih?};
+		\node[process, below=of attemptValid] (score) {Ambil skor attempt\\atau nilai IRT};
+		\node[process, below=of score] (map) {Map skor ke\\komponen penilaian};
+		\node[result, below=of map] (import) {Import nilai ke\\Neutron Office};
+		\node[result, right=1.7cm of contextValid] (blockContext) {Block import\\tampilkan error};
+		\node[result, right=1.7cm of attemptValid] (blockAttempt) {Block import\\``Siswa X belum\\attempt Quiz Y''};
 
-		\draw[arrow] (jenjang) -- (siswa);
-		\draw[arrow] (jenjang) -- (kelompok);
-		\draw[arrow] (jenjang) -- (quizset);
-		\draw[arrow] (quizset) -- (quiz);
-		\draw[arrow] (quizset) -- (komponen);
-		\draw[arrow] (quiz) -- (attempt);
-		\draw[arrow] (komponen) -- (attempt);
-		\draw[arrow] (attempt) -- (nilai);
+		\draw[arrow] (select) -- (contexts);
+		\draw[arrow] (contexts) -- (contextValid);
+		\draw[arrow] (contextValid) -- node[right, font=\scriptsize] {Ya} (attempts);
+		\draw[arrow] (attempts) -- (attemptValid);
+		\draw[arrow] (attemptValid) -- node[right, font=\scriptsize] {Ya} (score);
+		\draw[arrow] (score) -- (map);
+		\draw[arrow] (map) -- (import);
+		\draw[arrow] (contextValid) -- node[above, font=\scriptsize] {Tidak} (blockContext);
+		\draw[arrow] (attemptValid) -- node[above, font=\scriptsize] {Tidak} (blockAttempt);
 	\end{tikzpicture}
 	}
-	\caption{Model data konseptual fitur Import Nilai Neon Uji}
+	\caption{Model alur validasi data fitur Import Nilai Neon Uji}
 	\label{fig:model_data_import_neon_uji}
 \end{figure}
 

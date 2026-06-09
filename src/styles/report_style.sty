@@ -93,11 +93,12 @@
 \RequirePackage[hidelinks,plainpages=false]{hyperref}
 \RequirePackage{url}
 \urlstyle{same} % Agar font URL sama dengan font teks biasa (Times New Roman)
-\newcommand{\code}[1]{\texttt{#1}}
+\RequirePackage{seqsplit}
+\newcommand{\code}[1]{\begingroup\ttfamily\seqsplit{#1}\endgroup}
 \RequirePackage{pdfpages}
 \RequirePackage{pdflscape}
 
 % Paket Dummy Text
 \RequirePackage{tikz}
-\usetikzlibrary{positioning, arrows.meta}
+\usetikzlibrary{positioning, arrows.meta, shapes.geometric}
 \RequirePackage{lipsum}
