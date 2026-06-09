@@ -15,18 +15,85 @@
 Mata kuliah ini berfokus pada penerapan kemampuan pengembangan fitur dan modul perangkat lunak dalam lingkungan kerja industri. Selama kegiatan magang, capaian mata kuliah diwujudkan melalui kontribusi pada dua area pekerjaan utama, yaitu pengembangan dokumentasi dan \textit{design library} pada Neon Interfaces serta pengembangan fitur Import Nilai Neon Uji pada repositori Pendidikan. Kedua pekerjaan tersebut menuntut pemahaman kebutuhan pengguna, perancangan alur antarmuka, implementasi komponen, integrasi data, dan penyesuaian hasil kerja berdasarkan umpan balik tim.
 
 \section{Silabus}
-Mahasiswa dapat mendeskripsikan kegiatan internship/MBKM yang memberikan penjelasan mengenai desain rancangan pengembangan perangkat lunak, atau perangkat keras, atau jaringan komputer, atau server/cloud, seperti desain pengembangan fitur/modul/komponen/subsistem/sistem/program/prototipe/software/infrastruktur/teknologi/server/jaringan komputer/cloud, dll. Misalnya dalam bentuk diagram, atau uraian hal-hal berikut (konteks disesuaikan dari/dengan kegiatan internship/MBKM):
+Mahasiswa dapat mendeskripsikan kegiatan internship\slash MBKM yang memberikan penjelasan mengenai desain rancangan pengembangan perangkat lunak, atau perangkat keras, atau jaringan komputer, atau server\slash cloud, seperti desain pengembangan fitur\slash modul\slash komponen\slash subsistem\slash sistem\slash program\slash prototipe\slash software\slash infrastruktur\slash teknologi\slash server\slash jaringan komputer\slash cloud, dll. Misalnya dalam bentuk diagram, atau uraian hal-hal berikut (konteks disesuaikan dari\slash dengan kegiatan internship\slash MBKM):
 \begin{enumerate}
-	\item Deskripsi/gambaran umum proses bisnis, bisnis logik sistem/proyek.
-	\item Deskripsi/desain (dari sisi) hardware/peralatan/teknologi/server/networking/cloud, dll.
-	\item Deskripsi/desain (dari sisi) perangkat lunak (yang ada atau akan dikembangkan).
+	\item Deskripsi\slash gambaran umum proses bisnis, bisnis logik sistem\slash proyek.
+	\item Deskripsi\slash desain (dari sisi) hardware\slash peralatan\slash teknologi\slash server\slash networking\slash cloud, dll.
+	\item Deskripsi\slash desain (dari sisi) perangkat lunak (yang ada atau akan dikembangkan).
 	\item Diagram arsitektur sistem.
-	\item Deskripsi detail fitur-fitur/spesifikasi sistem.
-	\item Rancangan proses modul/komponen/sub program/subprocedure/algoritma.
-	\item Rancangan UI/UX, front end.
-	\item Rancangan model data/database/server.
+	\item Deskripsi detail fitur-fitur\slash spesifikasi sistem.
+	\item Rancangan proses modul\slash komponen\slash sub program\slash subprocedure\slash algoritma.
+	\item Rancangan UI\slash UX, front end.
+	\item Rancangan model data\slash database\slash server.
 \end{enumerate}
-Pada kegiatan magang, tuntutan silabus tersebut diterjemahkan menjadi dua keluaran utama, yaitu dokumentasi komponen pada Neon Interfaces menggunakan Storybook serta pengembangan fitur Import Nilai Neon Uji pada repositori Pendidikan.
+Pada kegiatan magang, tuntutan silabus tersebut diterjemahkan menjadi dua keluaran utama, yaitu dokumentasi komponen pada Neon Interfaces menggunakan Storybook serta pengembangan fitur Import Nilai Neon Uji pada repositori Pendidikan. Pemetaan antara poin silabus dan bukti dalam laporan ditunjukkan pada Tabel~\ref{tab:pemetaan_silabus_bab3}.
+
+Tabel~\ref{tab:pemetaan_silabus_bab3} menunjukkan pemetaan antara poin silabus dan bukti yang tersedia dalam laporan.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Pemetaan silabus terhadap bukti dalam laporan (MII21-3011)}
+	\label{tab:pemetaan_silabus_bab3}
+	\small
+	\small
+	\begin{tabularx}{\textwidth}{|c|>{\raggedright\arraybackslash}p{3.8cm}|>{\raggedright\arraybackslash}X|}
+		\hline
+		\textbf{No} & \textbf{Poin Silabus} & \textbf{Bukti dalam Laporan} \\
+		\hline
+		1 & Proses bisnis, bisnis logik sistem & Alur bisnis fitur Import Nilai Neon Uji dijelaskan pada \emph{Aktivitas} dan Gambar~\ref{fig:flowchart_integrasi_neon_uji} (Bab~\ref{chap:pengujian}). Proses pemilihan konteks penilaian, pemetaan quiz, pratinjau nilai, dan publikasi nilai dijelaskan secara naratif. \\
+		\hline
+		2 & Hardware\slash peralatan\slash teknologi\slash server\slash networking\slash cloud & Teknologi: Nuxt~3, Vue~3, MongoDB, Tailwind CSS, Storybook. Aplikasi berjalan pada arsitektur \textit{client-side rendering} dengan layanan backend via API. Infrastruktur server dioperasikan tim infrastruktur perusahaan tanpa akses konfigurasi oleh magang. \\
+		\hline
+		3 & Perangkat lunak yang dikembangkan & Arsitektur kode fitur Import Nilai Neon Uji: page, component, composable, service, dan helper dijelaskan pada Bab~\ref{chap:pengujian}. \\
+		\hline
+		4 & Diagram arsitektur sistem & Gambar~\ref{fig:flowchart_integrasi_neon_uji} (Bab~\ref{chap:pengujian}). Komponen Neon Interfaces didokumentasikan via Storybook. \\
+		\hline
+		5 & Detail fitur\slash spesifikasi sistem & Fitur Import Nilai Neon Uji: alur quiz, quiz-set, pemetaan komponen penilaian, publikasi nilai (\emph{Aktivitas}). Neon Interfaces: dokumentasi komponen antarmuka. \\
+		\hline
+		6 & Rancangan proses modul/komponen/algoritma & Helper: \code{canProceedImportNeonUji}, \code{resetImportNeonUjiFiltersFromField}, \code{normalizeImportNeonUjiTargetIds}, \code{selectImportNeonUjiScore}. Cuplikan kode: Listing~\ref{lst:generate_grading_components} dan Listing~\ref{lst:target_students_import_neon_uji}. \\
+		\hline
+		7 & Rancangan UI\slash UX, front end & Neon Interfaces: dokumentasi komponen via Storybook. Alur antarmuka Import Nilai Neon Uji dijelaskan pada \emph{Aktivitas}. \\
+		\hline
+		8 & Rancangan model data\slash database\slash server & Model data konseptual: Gambar~\ref{fig:model_data_import_neon_uji}. Entitas: Siswa, Kelompok Belajar, Jenjang Studi, Komponen Penilaian, Quiz Set, Attempt, dan Nilai IRT. \\
+		\hline
+	\end{tabularx}
+\end{table}
+
+\subsection{Alur Bisnis dan Model Data Konseptual}
+Alur bisnis fitur Import Nilai Neon Uji dimulai dari pengguna yang memilih sumber data dari Neon Uji, menentukan tipe hasil penilaian, memilih jenjang studi dan target, memetakan quiz ke komponen penilaian, melihat pratinjau nilai, lalu mempublikasikan nilai ke Neutron. Alur ini terdokumentasi secara lengkap pada flowchart di Bab~\ref{chap:pengujian} (Gambar~\ref{fig:flowchart_integrasi_neon_uji}).
+
+Model data konseptual pada Gambar~\ref{fig:model_data_import_neon_uji} menunjukkan entitas utama yang terlibat dalam fitur Import Nilai Neon Uji beserta relasinya. Entitas \textit{Jenjang Studi} menjadi konteks awal yang menghubungkan \textit{Siswa} atau \textit{Kelompok Belajar} sebagai target penilaian. Dari jenjang studi, \textit{Quiz Set} atau \textit{Quiz} dipilih sebagai sumber data dari Neon Uji. \textit{Komponen Penilaian} menjadi jembatan antara konteks penilaian dan quiz yang dipetakan. \textit{Attempt} merekam riwayat pengerjaan kuis oleh siswa, sedangkan \textit{Nilai IRT} menyimpan skor akhir yang dihasilkan dari proses penilaian.
+
+\begin{figure}[htbp]
+	\centering
+	\scalebox{0.92}{
+	\begin{tikzpicture}[
+		node distance=0.8cm and 1.0cm,
+		every node/.style={draw, rounded corners, minimum width=1.6cm, minimum height=0.55cm, align=center, font=\scriptsize},
+		arrow/.style={->, >=stealth, semithick}
+	]
+		\node (jenjang) {Jenjang\\Studi};
+		\node (siswa) [below left=of jenjang] {Siswa};
+		\node (kelompok) [below right=of jenjang] {Kelompok\\Belajar};
+		\node (quizset) [right=1.5cm of jenjang] {Quiz Set};
+		\node (quiz) [below=of quizset] {Quiz};
+		\node (komponen) [right=1.5cm of quizset] {Komponen\\Penilaian};
+		\node (attempt) [below=of komponen] {Attempt};
+		\node (nilai) [right=1.5cm of komponen] {Nilai IRT};
+
+		\draw[arrow] (jenjang) -- (siswa);
+		\draw[arrow] (jenjang) -- (kelompok);
+		\draw[arrow] (jenjang) -- (quizset);
+		\draw[arrow] (quizset) -- (quiz);
+		\draw[arrow] (quizset) -- (komponen);
+		\draw[arrow] (quiz) -- (attempt);
+		\draw[arrow] (komponen) -- (attempt);
+		\draw[arrow] (attempt) -- (nilai);
+	\end{tikzpicture}
+	}
+	\caption{Model data konseptual fitur Import Nilai Neon Uji}
+	\label{fig:model_data_import_neon_uji}
+\end{figure}
 
 \section{Aktivitas}
 Pada proyek Neon Interfaces, aktivitas pengembangan diarahkan pada penyusunan dokumentasi komponen dan penguatan \textit{design library} berbasis \textit{shadcn/ui}. Pekerjaan ini dilakukan melalui Storybook~\cite{storybook_docs,shadcn_ui} yang berfungsi sebagai media dokumentasi interaktif untuk komponen antarmuka. Komponen seperti \textit{button}, \textit{badge}, dan \textit{textarea} didokumentasikan dengan variasi properti, contoh penggunaan, serta dukungan tema seperti \textit{neon}, \textit{belajar}, dan \textit{uji}. Dokumentasi tersebut membantu menjaga konsistensi antarmuka dan mempercepat proses penggunaan ulang komponen pada proyek lain.

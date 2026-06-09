@@ -1,4 +1,5 @@
 \chapter{Internship: Pengujian Unit dan Modul Proyek}
+\label{chap:pengujian}
 
 \section{Identitas Mata Kuliah}
 \begingroup
@@ -24,6 +25,29 @@ Mahasiswa dapat menyusun desain pengujian unit dari perangkat lunak\slash modul\
 	\item Desain daftar/tabel kasus pengujian, atau list of test cases (yang memuat kolom-kolom seperti: nomor, nama unit/modul/komponen/subprogram, data-data uji, metode/cara pengujian, prediksi hasil uji).
 	\item Hasil/luaran pengujian, atau validasi/verifikasi, dan pembahasan dari hasil uji.
 \end{enumerate}
+
+Pemetaan antara poin silabus dan bukti dalam laporan ditunjukkan pada Tabel~\ref{tab:pemetaan_silabus_bab4}.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Pemetaan silabus terhadap bukti dalam laporan (MII21-3015)}
+	\label{tab:pemetaan_silabus_bab4}
+	\begin{tabularx}{\textwidth}{|c|>{\raggedright\arraybackslash}p{5cm}|>{\raggedright\arraybackslash}X|}
+		\hline
+		\textbf{No} & \textbf{Poin Silabus} & \textbf{Bukti dalam Laporan} \\
+		\hline
+		1 & Deskripsi umum pengujian (tujuan, strategi/metode) & \emph{Tujuan dan Strategi Pengujian}: pengujian manual berbasis skenario dan pemeriksaan kode berbasis rancangan unit test. \\
+		\hline
+		2 & Tool pengujian, library, add-in, plug-in, atau hardware & Coda (penyusunan skenario manual), browser (eksekusi skenario), Vitest~\cite{vitest_docs} (referensi kerangka pengujian unit). \\
+		\hline
+		3 & Daftar unit/fitur/modul yang akan diujikan & Fitur Integrasi Neon Uji dengan Neutron Office. Unit yang diuji meliputi navigasi, filter penilaian, aktivasi tombol, pemetaan komponen, import skor, dan publikasi nilai. Helper murni yang dirancang untuk unit test: \code{canProceedImportNeonUji}, \code{resetImportNeonUjiFiltersFromField}, \code{normalizeImportNeonUjiTargetIds}, \code{selectImportNeonUjiScore}. \\
+		\hline
+		4 & Desain daftar/tabel kasus pengujian (list of test cases) & Tabel~\ref{tab:unit_test_import_neon_uji} (rancangan unit test untuk helper) dan Tabel~\ref{tab:ringkasan_pengujian_import_neon_uji} (ringkasan iterasi pengujian manual 21 skenario). \\
+		\hline
+		5 & Hasil/luaran pengujian, validasi/verifikasi, dan pembahasan & \emph{Hasil dan Pembahasan}: hasil pengujian manual (11P/10F menjadi 21P/0F setelah iterasi), verifikasi oleh tim QA, dan pembahasan keterkaitan temuan manual dengan logika kode. \\
+		\hline
+	\end{tabularx}
+\end{table}
 
 \section{Tujuan dan Strategi Pengujian}
 Tujuan pengujian adalah memvalidasi bahwa fitur Import Nilai Neon Uji berfungsi sesuai kebutuhan bisnis dan ekspektasi pengguna, baik pada tingkat unit maupun modul. Pengujian dilakukan melalui dua pendekatan yang saling melengkapi.
