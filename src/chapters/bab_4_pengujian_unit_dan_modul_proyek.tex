@@ -5,10 +5,10 @@
 \begingroup
 \renewcommand{\arraystretch}{1.15}
 \noindent\begin{tabularx}{\linewidth}{@{}p{3.6cm}@{\hspace{0.2cm}}p{0.2cm}@{\hspace{0.2cm}}X@{}}
-	\textbf{Kode Mata Kuliah} & : & MII21-3015                                                                      \\
-	\textbf{Nama Mata Kuliah} & : & Internship: Pengujian Unit dan Modul Proyek                                     \\
-	\textbf{Bobot}            & : & 3 SKS                                                                           \\
-	\textbf{Bentuk Kegiatan}  & : & Magang MBKM sebagai Frontend Developer Intern di PT Vortex Buana Edumedia        \\
+	\textbf{Kode Mata Kuliah} & : & MII21-3015                                                                    \\
+	\textbf{Nama Mata Kuliah} & : & Internship: Pengujian Unit dan Modul Proyek                                   \\
+	\textbf{Bobot}            & : & 3 SKS                                                                         \\
+	\textbf{Bentuk Kegiatan}  & : & Magang MBKM sebagai Frontend Developer Intern di PT Vortex Buana Edumedia     \\
 	\textbf{Proyek Terkait}   & : & Pengujian integrasi Neon Uji dengan Neutron Office pada repositori Pendidikan \\
 \end{tabularx}
 \par\vspace{0.5\baselineskip}
@@ -34,17 +34,17 @@ Pemetaan antara poin silabus dan bukti dalam laporan ditunjukkan pada Tabel~\ref
 	\label{tab:pemetaan_silabus_bab4}
 	\begin{tabularx}{\textwidth}{|c|>{\raggedright\arraybackslash}p{5cm}|>{\raggedright\arraybackslash}X|}
 		\hline
-		\textbf{No} & \textbf{Poin Silabus} & \textbf{Bukti dalam Laporan} \\
+		\textbf{No} & \textbf{Poin Silabus}                                       & \textbf{Bukti dalam Laporan}                                                                                                                                                                                                                                                                                                                                                \\
 		\hline
-		1 & Deskripsi umum pengujian (tujuan, strategi/metode) & \emph{Tujuan dan Strategi Pengujian}: pengujian manual berbasis skenario dan pemeriksaan kode berbasis rancangan unit test. \\
+		1           & Deskripsi umum pengujian (tujuan, strategi/metode)          & \emph{Tujuan dan Strategi Pengujian}: pengujian manual berbasis skenario dan pemeriksaan kode berbasis rancangan unit test.                                                                                                                                                                                                                                                 \\
 		\hline
-		2 & Tool pengujian, library, add-in, plug-in, atau hardware & Coda (penyusunan skenario manual), browser (eksekusi skenario), Vitest~\cite{vitest_docs} (referensi kerangka pengujian unit). \\
+		2           & Tool pengujian, library, add-in, plug-in, atau hardware     & Coda (penyusunan skenario manual), browser (eksekusi skenario), Vitest~\cite{vitest_docs} (referensi kerangka pengujian unit).                                                                                                                                                                                                                                              \\
 		\hline
-		3 & Daftar unit/fitur/modul yang akan diujikan & Fitur Integrasi Neon Uji dengan Neutron Office. Unit yang diuji meliputi navigasi, filter penilaian, aktivasi tombol, pemetaan komponen, import skor, dan publikasi nilai. Helper murni yang dirancang untuk unit test: \code{canProceedImportNeonUji}, \code{resetImportNeonUjiFiltersFromField}, \code{normalizeImportNeonUjiTargetIds}, \code{selectImportNeonUjiScore}. \\
+		3           & Daftar unit/fitur/modul yang akan diujikan                  & Fitur Integrasi Neon Uji dengan Neutron Office. Unit yang diuji meliputi navigasi, filter penilaian, aktivasi tombol, pemetaan komponen, import skor, dan publikasi nilai. Helper murni yang dirancang untuk unit test: \code{canProceedImportNeonUji}, \code{resetImportNeonUjiFiltersFromField}, \code{normalizeImportNeonUjiTargetIds}, \code{selectImportNeonUjiScore}. \\
 		\hline
-		4 & Desain daftar/tabel kasus pengujian (list of test cases) & Tabel~\ref{tab:unit_test_import_neon_uji} (rancangan unit test untuk helper) dan Tabel~\ref{tab:ringkasan_pengujian_import_neon_uji} (ringkasan iterasi pengujian manual 21 skenario). \\
+		4           & Desain daftar/tabel kasus pengujian (list of test cases)    & Tabel~\ref{tab:unit_test_import_neon_uji} (rancangan unit test untuk helper) dan Tabel~\ref{tab:ringkasan_pengujian_import_neon_uji} (ringkasan iterasi pengujian manual 21 skenario).                                                                                                                                                                                      \\
 		\hline
-		5 & Hasil/luaran pengujian, validasi/verifikasi, dan pembahasan & \emph{Hasil dan Pembahasan}: hasil pengujian manual (11P/10F menjadi 21P/0F setelah iterasi), verifikasi oleh tim QA, dan pembahasan keterkaitan temuan manual dengan logika kode. \\
+		5           & Hasil/luaran pengujian, validasi/verifikasi, dan pembahasan & \emph{Hasil dan Pembahasan}: hasil pengujian manual (11P/10F menjadi 21P/0F setelah iterasi), verifikasi oleh tim QA, dan pembahasan keterkaitan temuan manual dengan logika kode.                                                                                                                                                                                          \\
 		\hline
 	\end{tabularx}
 \end{table}
@@ -52,7 +52,7 @@ Pemetaan antara poin silabus dan bukti dalam laporan ditunjukkan pada Tabel~\ref
 \section{Tujuan dan Strategi Pengujian}
 Tujuan pengujian adalah memvalidasi bahwa fitur Import Nilai Neon Uji berfungsi sesuai kebutuhan bisnis dan ekspektasi pengguna, baik pada tingkat unit maupun modul. Pengujian dilakukan melalui dua pendekatan yang saling melengkapi.
 
-Pendekatan pertama adalah \textbf{pengujian manual berbasis skenario}, yaitu pengeksekusian alur fitur secara langsung di browser untuk mengidentifikasi bug pada antarmuka, validasi data, dan alur navigasi. Pendekatan ini dipilih karena fitur berjalan di lingkungan frontend yang melibatkan interaksi pengguna, state management, dan integrasi data dari service. Penulis menyusun 21 skenario pengujian manual pada Coda, mengeksekusinya sendiri, lalu meminta tim QA melakukan verifikasi ulang menggunakan metode dan tools mereka sendiri. Hasil verifikasi QA dijadikan acuan laporan karena mencerminkan perspektif pengujian yang lebih independen.
+Pendekatan pertama adalah \textbf{pengujian manual berbasis skenario}, yaitu pengeksekusian alur fitur secara langsung di browser untuk mengidentifikasi bug pada antarmuka, validasi data, dan alur navigasi. Pendekatan ini dipilih karena fitur berjalan di lingkungan \textit{frontend} yang melibatkan interaksi pengguna, \textit{state management}, dan integrasi data dari layanan backend. Penulis menyusun 21 skenario pengujian manual pada Coda, mengeksekusinya sendiri, lalu meminta tim QA melakukan verifikasi ulang menggunakan metode dan alat mereka sendiri. Hasil verifikasi QA dijadikan acuan laporan karena mencerminkan perspektif pengujian yang lebih independen.
 
 Pendekatan kedua adalah \textbf{pemeriksaan kode dan rancangan unit test}, yaitu penelaahan struktur kode untuk mengidentifikasi unit logika yang dapat diuji secara terpisah, disertai contoh rancangan unit test sebagai ilustrasi. Pendekatan ini bersifat konseptual dan ditujukan untuk memperlihatkan keterkaitan antara temuan bug manual dengan logika pada kode sumber. Rancangan unit test yang disajikan tidak dijalankan dalam pipeline pengujian repositori, melainkan disusun untuk menunjukkan bagaimana helper murni dapat diuji secara terpisah jika pengujian otomatis diintegrasikan ke dalam alur kerja.
 
@@ -69,7 +69,7 @@ Alur tersebut terdokumentasi pada flowchart integrasi Neon Uji ke Neutron. Flowc
 \end{figure}
 
 \section{Konsep Dasar yang Berkaitan dengan Silabus}
-Konsep dasar pengujian unit adalah memastikan bagian terkecil dari sistem bekerja sesuai tanggung jawabnya~\cite{myers_art_software_testing,vitest_docs}. Pada fitur Integrasi Neon Uji, unit yang paling layak diuji adalah helper murni seperti \code{canProceedImportNeonUji}, \code{resetImportNeonUjiFiltersFromField}, \code{normalizeImportNeonUjiTargetIds}, dan \code{selectImportNeonUjiScore} karena logikanya dapat dijalankan tanpa memuat seluruh halaman atau service~\cite{pendidikan_useImportNeonUji_helpers,pendidikan_useImportNeonUji_test}.
+Konsep dasar pengujian unit adalah memastikan bagian terkecil dari sistem bekerja sesuai tanggung jawabnya~\cite{myers_art_software_testing,vitest_docs}. Pada fitur Integrasi Neon Uji, unit yang paling layak diuji adalah helper murni seperti \code{canProceedImportNeonUji}, \code{resetImportNeonUjiFiltersFromField}, \code{normalizeImportNeonUjiTargetIds}, dan \code{selectImportNeonUjiScore} karena logikanya dapat dijalankan tanpa memuat seluruh halaman atau layanan backend~\cite{pendidikan_useImportNeonUji_helpers,pendidikan_useImportNeonUji_test}.
 
 Pengujian modul berfokus pada interaksi beberapa unit dalam satu alur kerja. Pada fitur ini, pengujian modul mencakup hubungan antara pemilihan filter, pemuatan data siswa/kelompok belajar, pemetaan quiz ke komponen penilaian, pengecekan attempt, pembuatan grading, pembuatan score, dan publikasi nilai. Alur tersebut terlihat pada \code{useImportNeonUji.ts}, \code{GradingImportNeonUji.vue}, dan \code{services.ts}~\cite{pendidikan_useImportNeonUji_composable,pendidikan_import_neon_uji_component,pendidikan_import_neon_uji_services}.
 
@@ -78,7 +78,7 @@ Konsep lain yang berkaitan adalah debugging dan regresi. Debugging dilakukan unt
 \section{Pengujian Manual dan Verifikasi QA}
 
 \subsection{Penyusunan Skenario Pengujian}
-Daftar item pengujian manual disusun pada Coda berdasarkan alur fitur yang dikembangkan, lalu setiap skenario dieksekusi secara langsung untuk mengidentifikasi bug pada tahap awal. Berdasarkan \code{assets/coda-test-report.md} dan \code{assets/coda-test-items.json}, pengujian awal menghasilkan 21 skenario dengan 11 skenario berstatus \textit{Passed} dan 10 skenario berstatus \textit{Failed}. Tim QA kemudian melakukan verifikasi ulang menggunakan metode dan tools mereka sendiri untuk memastikan konsistensi temuan. Hasil awal tersebut tidak langsung dianggap sebagai hasil akhir, tetapi digunakan sebagai dasar untuk membuat daftar issue, membahas prioritas perbaikan pada daily stand-up, melakukan perbaikan, lalu menjalankan pengujian ulang sampai seluruh skenario dapat dinyatakan \textit{Passed}.
+Daftar item pengujian manual disusun pada Coda berdasarkan alur fitur yang dikembangkan, lalu setiap skenario dieksekusi secara langsung untuk mengidentifikasi bug pada tahap awal. Berdasarkan \code{assets/coda-test-report.md} dan \code{assets/coda-test-items.json}, pengujian awal menghasilkan 21 skenario dengan 11 skenario berstatus \textit{Passed} dan 10 skenario berstatus \textit{Failed}. Tim QA kemudian melakukan verifikasi ulang menggunakan metode dan alat mereka sendiri untuk memastikan konsistensi temuan. Hasil awal tersebut tidak langsung dianggap sebagai hasil akhir, tetapi digunakan sebagai dasar untuk membuat daftar issue, membahas prioritas perbaikan pada 	extit{daily stand-up}, melakukan perbaikan, lalu menjalankan pengujian ulang sampai seluruh skenario dapat dinyatakan \textit{Passed}.
 
 \begin{figure}[htbp]
 	\centering
@@ -88,7 +88,7 @@ Daftar item pengujian manual disusun pada Coda berdasarkan alur fitur yang dikem
 \end{figure}
 
 \subsection{Ringkasan Hasil Pengujian Manual}
-Ringkasan skenario pengujian manual dapat dilihat pada Tabel~\ref{tab:ringkasan_pengujian_import_neon_uji}. Kolom pengujian awal menunjukkan kondisi ketika bug pertama kali ditemukan, sedangkan kolom setelah iterasi menunjukkan hasil setelah issue dibahas pada daily stand-up, diperbaiki, dan diuji ulang.
+Ringkasan skenario pengujian manual dapat dilihat pada Tabel~\ref{tab:ringkasan_pengujian_import_neon_uji}. Kolom pengujian awal menunjukkan kondisi ketika bug pertama kali ditemukan, sedangkan kolom setelah iterasi menunjukkan hasil setelah issue dibahas pada 	extit{daily stand-up}, diperbaiki, dan diuji ulang.
 
 \begin{table}[htbp]
 	\centering
@@ -96,29 +96,29 @@ Ringkasan skenario pengujian manual dapat dilihat pada Tabel~\ref{tab:ringkasan_
 	\label{tab:ringkasan_pengujian_import_neon_uji}
 	\begin{tabularx}{\textwidth}{|c|>{\raggedright\arraybackslash}p{3.7cm}|c|c|>{\raggedright\arraybackslash}X|}
 		\hline
-		\textbf{No}                          & \textbf{Kelompok Skenario}                & \textbf{Awal} & \textbf{Akhir}                 & \textbf{Catatan Iterasi}                                                                                                                                                                \\
+		\textbf{No}                          & \textbf{Kelompok Skenario}                & \textbf{Awal}   & \textbf{Akhir}                                                                  & \textbf{Catatan Iterasi}                                                                                                        \\
 		\hline
-		1                                    & Navigasi dan pemilihan input penilaian    & 1P/1F          & 2P/0F                            & Issue navigasi import dibahas pada daily stand-up, lalu alur masuk ke Import Nilai Neon Uji diperbaiki dan diuji ulang.                                                        \\
+		1                                    & Navigasi dan pemilihan input penilaian    & 1P/1F           & 2P/0F                                                                           & Issue navigasi import dibahas pada 	extit{daily stand-up}, lalu alur masuk ke Import Nilai Neon Uji diperbaiki dan diuji ulang. \\
 		\hline
-		2                                    & Pemilihan filter penilaian                & 4P/3F          & 7P/0F                            & Temuan pada pemilihan siswa, kelompok belajar, dan tipe penilaian dicatat sebagai issue validasi data filter.                                         \\
+		2                                    & Pemilihan filter penilaian                & 4P/3F           & 7P/0F                                                                           & Temuan pada pemilihan siswa, kelompok belajar, dan tipe penilaian dicatat sebagai issue validasi data filter.                   \\
 		\hline
-		3                                    & Aktivasi tombol dan navigasi tahap lanjut & 3P/1F          & 4P/0F                            & Status tombol diperbaiki agar mengikuti kelengkapan input dan kelengkapan pemetaan quiz.                        \\
+		3                                    & Aktivasi tombol dan navigasi tahap lanjut & 3P/1F           & 4P/0F                                                                           & Status tombol diperbaiki agar mengikuti kelengkapan input dan kelengkapan pemetaan quiz.                                        \\
 		\hline
-		4                                    & Pemetaan komponen penilaian ke quiz       & 2P/0F          & 2P/0F                            & Skenario pemetaan quiz sudah lolos sejak pengujian awal dan dijadikan acuan regresi.                                                                                                          \\
+		4                                    & Pemetaan komponen penilaian ke quiz       & 2P/0F           & 2P/0F                                                                           & Skenario pemetaan quiz sudah lolos sejak pengujian awal dan dijadikan acuan regresi.                                            \\
 		\hline
-		5                                    & Import skor dan publikasi nilai           & 1P/6F          & 7P/0F                            & Issue attempt, student, tampilan IRT, dan notifikasi publikasi diperbaiki melalui beberapa siklus retest. \\
+		5                                    & Import skor dan publikasi nilai           & 1P/6F           & 7P/0F                                                                           & Issue attempt, student, tampilan IRT, dan notifikasi publikasi diperbaiki melalui beberapa siklus retest.                       \\
 		\hline
-		\multicolumn{2}{|c|}{\textbf{Total}} & \textbf{11P/10F}                               & \textbf{21P/0F}     & Semua skenario dinyatakan passed setelah issue ditindaklanjuti dan diuji ulang.                                                                                                                                                                                          \\
+		\multicolumn{2}{|c|}{\textbf{Total}} & \textbf{11P/10F}                          & \textbf{21P/0F} & Semua skenario dinyatakan passed setelah issue ditindaklanjuti dan diuji ulang.                                                                                                                                   \\
 		\hline
 	\end{tabularx}
 \end{table}
 
 \subsection{Iterasi Issue Melalui Daily Stand-up}
-Hasil pengujian awal menghasilkan beberapa temuan yang tidak dapat diselesaikan secara mandiri tanpa koordinasi tim. Setiap temuan dicatat, dikelompokkan berdasarkan dampaknya terhadap alur import nilai, lalu dibahas pada daily stand-up bersama pembimbing dan anggota tim. Daily stand-up digunakan untuk menjelaskan gejala bug, langkah reproduksi, kondisi data yang digunakan, serta prioritas perbaikan yang perlu dikerjakan terlebih dahulu.
+Hasil pengujian awal menghasilkan beberapa temuan yang tidak dapat diselesaikan secara mandiri tanpa koordinasi tim. Setiap temuan dicatat, dikelompokkan berdasarkan dampaknya terhadap alur import nilai, lalu dibahas pada 	extit{daily stand-up} bersama pembimbing dan anggota tim. 	extit{Daily stand-up} digunakan untuk menjelaskan gejala bug, langkah reproduksi, kondisi data yang digunakan, serta prioritas perbaikan yang perlu dikerjakan terlebih dahulu.
 
-Temuan dengan prioritas tinggi terdapat pada skenario import skor Non-IRT untuk siswa dan kelompok belajar. Pada skenario siswa, sistem menampilkan pesan ``Tidak ada quiz attempt yang ditemukan'' meskipun siswa disebut sudah mengerjakan quiz. Pada skenario kelompok belajar, sistem menampilkan pesan ``Tidak ada student yang ditemukan'' meskipun kelompok belajar memiliki siswa. Temuan tersebut menunjukkan bahwa validasi relasi data antara target, context quiz, attempt, dan student menjadi bagian penting dalam pengujian modul.
+Temuan dengan prioritas tinggi terdapat pada skenario import skor Non-IRT untuk siswa dan kelompok belajar. Pada skenario siswa, sistem menampilkan pesan ``Tidak ada quiz 	extit{attempt} yang ditemukan'' meskipun siswa disebut sudah mengerjakan quiz. Pada skenario kelompok belajar, sistem menampilkan pesan ``Tidak ada student yang ditemukan'' meskipun kelompok belajar memiliki siswa. Temuan tersebut menunjukkan bahwa validasi relasi data antara target, 	extit{quiz context}, 	extit{attempt}, dan 	extit{student} menjadi bagian penting dalam pengujian modul.
 
-Temuan dengan prioritas medium berkaitan dengan status tombol dan tampilan hasil IRT. Tombol \textit{Lanjutkan} tidak kembali nonaktif ketika input tipe penilaian dikosongkan, tombol \textit{Hasilkan Penilaian} aktif walaupun quiz pada komponen belum lengkap, dan skenario import skor IRT masih menampilkan kolom score yang seharusnya tidak muncul. Temuan tersebut memperlihatkan perlunya pengujian regresi pada state antarmuka dan logika pemetaan nilai.
+Temuan dengan prioritas medium berkaitan dengan status tombol dan tampilan hasil IRT (	extit{Item Response Theory}). Tombol \textit{Lanjutkan} tidak kembali nonaktif ketika input tipe penilaian dikosongkan, tombol \textit{Hasilkan Penilaian} aktif walaupun quiz pada komponen belum lengkap, dan skenario import skor IRT masih menampilkan kolom score yang seharusnya tidak muncul. Temuan tersebut memperlihatkan perlunya pengujian regresi pada 	extit{state} antarmuka dan logika pemetaan nilai.
 
 Setelah issue dibahas, perbaikan dilakukan secara bertahap. Perbaikan tidak hanya berfokus pada tampilan, tetapi juga pada validasi data, pemetaan target, pengecekan attempt, dan kondisi tombol. Setiap perbaikan kemudian diuji ulang menggunakan skenario yang sama agar hasilnya dapat dibandingkan dengan pengujian awal. Siklus ini dilakukan sampai semua skenario yang sebelumnya failed berubah menjadi passed dan tidak merusak skenario yang sejak awal sudah passed.
 
@@ -135,7 +135,7 @@ Berdasarkan penelusuran pada repositori Pendidikan, kode fitur Integrasi Neon Uj
 	\item Service fetch \code{services.ts} untuk query data Neon Uji dan data penilaian.
 \end{enumerate}
 
-Fitur Import Nilai Neon Uji dipisah menjadi page, component, composable, service, dan helper. Pemisahan ini memungkinkan pengujian helper secara terpisah karena fungsi-fungsi tersebut tidak bergantung pada halaman atau service~\cite{pendidikan_useImportNeonUji_helpers,pendidikan_useImportNeonUji_test}.
+Fitur Import Nilai Neon Uji dipisah menjadi page, component, composable, service, dan helper. Pemisahan ini memungkinkan pengujian helper secara terpisah karena fungsi-fungsi tersebut tidak bergantung pada halaman atau layanan backend~\cite{pendidikan_useImportNeonUji_helpers,pendidikan_useImportNeonUji_test}.
 
 \subsection{Cuplikan Helper yang Dapat Diuji}
 Cuplikan berikut menunjukkan tiga fungsi helper yang representative untuk diuji. Fungsi pemisahan validasi filter memastikan kedua alur (\code{quiz} dan \code{quiz-set}) memiliki kebutuhan input yang berbeda. Fungsi normalisasi target memastikan input tunggal maupun array diproses menjadi daftar ID yang konsisten. Fungsi pemilihan skor memastikan nilai IRT digunakan ketika tersedia dan valid, sedangkan skor attempt digunakan sebagai cadangan~\cite{pendidikan_useImportNeonUji_helpers}.
@@ -198,31 +198,31 @@ Berdasarkan helper di atas, rancangan unit test disusun untuk memeriksa validasi
 	\label{tab:unit_test_import_neon_uji}
 	\begin{tabularx}{\textwidth}{|c|>{\raggedright\arraybackslash}p{3.2cm}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{3.2cm}|}
 		\hline
-		\textbf{No} & \textbf{Unit yang Diuji}                    & \textbf{Data Uji dan Skenario}                                                                             & \textbf{Prediksi Hasil}                          \\
+		\textbf{No} & \textbf{Unit yang Diuji} & \textbf{Data Uji dan Skenario}                                                                           & \textbf{Prediksi Hasil}                          \\
 		\hline
-		1           & Validasi filter                              & Filter tipe hasil \code{quiz} belum memiliki target siswa.                                               & Menghasilkan \code{false}.                     \\
+		1           & Validasi filter          & Filter tipe hasil \code{quiz} belum memiliki target siswa.                                               & Menghasilkan \code{false}.                       \\
 		\hline
-		2           & Validasi filter                              & Filter tipe hasil \code{quiz} sudah memiliki jenjang studi, jenis penilaian, target, dan tipe penilaian. & Menghasilkan \code{true}.                      \\
+		2           & Validasi filter          & Filter tipe hasil \code{quiz} sudah memiliki jenjang studi, jenis penilaian, target, dan tipe penilaian. & Menghasilkan \code{true}.                        \\
 		\hline
-		3           & Reset filter bertingkat                      & Field \code{jenisPenilaian} berubah setelah target dan tipe penilaian terisi.                            & Target dan tipe penilaian dikosongkan.           \\
+		3           & Reset filter bertingkat  & Field \code{jenisPenilaian} berubah setelah target dan tipe penilaian terisi.                            & Target dan tipe penilaian dikosongkan.           \\
 		\hline
-		4           & Normalisasi target                           & Target berisi array dengan nilai kosong.                                                                   & Nilai kosong dibuang dan ID valid dipertahankan. \\
+		4           & Normalisasi target       & Target berisi array dengan nilai kosong.                                                                 & Nilai kosong dibuang dan ID valid dipertahankan. \\
 		\hline
-		5           & Pemilihan skor                               & Attempt memiliki skor 75 dan data IRT memiliki \code{finalScore} 88.                                     & Skor yang dipakai adalah 88.                     \\
+		5           & Pemilihan skor           & Attempt memiliki skor 75 dan data IRT memiliki \code{finalScore} 88.                                     & Skor yang dipakai adalah 88.                     \\
 		\hline
-		6           & Pemilihan skor                               & Data IRT kosong, nol, atau tidak valid.                                                                    & Sistem memakai skor attempt sebagai fallback.    \\
+		6           & Pemilihan skor           & Data IRT kosong, nol, atau tidak valid.                                                                  & Sistem memakai skor attempt sebagai fallback.    \\
 		\hline
 	\end{tabularx}
 \end{table}
 
-Rancangan unit test di atas bersifat ilustratif dan tidak menggantikan pengujian \textit{end-to-end}. Helper murni dipilih untuk dirancang karena logikanya dapat diuji tanpa memuat seluruh halaman atau service. Apabila pengujian otomatis diintegrasikan ke repositori, rancangan ini dapat dikembangkan menjadi suite Vitest yang dijalankan secara berkala untuk mendeteksi regresi pada logika dasar.
+Rancangan unit test di atas bersifat ilustratif dan tidak menggantikan pengujian \textit{end-to-end}. Helper murni dipilih untuk dirancang karena logikanya dapat diuji tanpa memuat seluruh halaman atau layanan backend. Apabila pengujian otomatis diintegrasikan ke repositori, rancangan ini dapat dikembangkan menjadi suite Vitest yang dijalankan secara berkala untuk mendeteksi regresi pada logika dasar.
 
 \section{Hasil dan Pembahasan}
-Hasil pengujian manual menunjukkan bahwa fitur Integrasi Neon Uji dengan Neutron Office mengalami peningkatan setelah proses iterasi. Pada pengujian awal, terdapat 11 skenario passed dan 10 skenario failed berdasarkan validasi QA yang dijadikan acuan laporan. Setelah issue dibahas melalui daily stand-up, diperbaiki, dan diuji ulang, seluruh 21 skenario dapat dinyatakan passed. Perubahan ini menunjukkan bahwa pengujian manual berbasis skenario tidak hanya berfungsi menemukan bug, tetapi juga memandu prioritas perbaikan dan memastikan hasil perbaikan benar-benar menyelesaikan masalah.
+Hasil pengujian manual menunjukkan bahwa fitur Integrasi Neon Uji dengan Neutron Office mengalami peningkatan setelah proses iterasi. Pada pengujian awal, terdapat 11 skenario passed dan 10 skenario failed berdasarkan validasi QA yang dijadikan acuan laporan. Setelah issue dibahas melalui 	extit{daily stand-up}, diperbaiki, dan diuji ulang, seluruh 21 skenario dapat dinyatakan passed. Perubahan ini menunjukkan bahwa pengujian manual berbasis skenario tidak hanya berfungsi menemukan bug, tetapi juga memandu prioritas perbaikan dan memastikan hasil perbaikan benar-benar menyelesaikan masalah.
 
-Pemeriksaan kode membantu menghubungkan hasil pengujian manual dengan unit logika yang relevan. Misalnya, temuan tombol aktif ketika input belum lengkap berkaitan dengan validasi filter dan kelengkapan pemetaan quiz. Temuan attempt tidak ditemukan berkaitan dengan proses pengambilan quiz context dan quiz attempt. Temuan skor IRT berkaitan dengan pemilihan sumber nilai antara \code{finalScore} IRT dan skor attempt biasa.
+Pemeriksaan kode membantu menghubungkan hasil pengujian manual dengan unit logika yang relevan. Misalnya, temuan tombol aktif ketika input belum lengkap berkaitan dengan validasi filter dan kelengkapan pemetaan quiz. Temuan 	extit{attempt} tidak ditemukan berkaitan dengan proses pengambilan 	extit{quiz context} dan 	extit{quiz attempt}. Temuan skor IRT berkaitan dengan pemilihan sumber nilai antara \code{finalScore} IRT dan skor 	extit{attempt} biasa.
 
 Rancangan unit test memperlihatkan bahwa sebagian logika dapat diisolasi dari alur halaman penuh. Validasi filter, reset filter, normalisasi target, dan pemilihan skor dapat dibuat sebagai fungsi murni sehingga lebih mudah diuji dengan data uji kecil. Pendekatan ini berpotensi mengurangi risiko regresi pada bagian logika dasar sebelum modul diuji kembali melalui alur pengguna~\cite{pendidikan_useImportNeonUji_helpers,pendidikan_useImportNeonUji_test}.
 
 \section{Kesimpulan}
-Mata kuliah Internship: Pengujian Unit dan Modul Proyek terlaksana melalui penyusunan skenario pengujian manual, pencatatan issue, pembahasan temuan pada daily stand-up, perbaikan bertahap, pengujian ulang, pemeriksaan kode fitur, dan penyusunan rancangan unit test untuk fitur Integrasi Neon Uji dengan Neutron Office. Pada pengujian awal terdapat 21 skenario dengan 11 skenario passed dan 10 skenario failed. Setelah proses iterasi, seluruh skenario dinyatakan passed. Pengujian ini menunjukkan bahwa kualitas modul tidak hanya bergantung pada tampilan antarmuka, tetapi juga pada konsistensi validasi data, relasi attempt, proses publikasi nilai, dan komunikasi issue yang jelas di dalam tim.
+Mata kuliah Internship: Pengujian Unit dan Modul Proyek terlaksana melalui penyusunan skenario pengujian manual, pencatatan issue, pembahasan temuan pada 	extit{daily stand-up}, perbaikan bertahap, pengujian ulang, pemeriksaan kode fitur, dan penyusunan rancangan unit test untuk fitur Integrasi Neon Uji dengan Neutron Office. Pada pengujian awal terdapat 21 skenario dengan 11 skenario passed dan 10 skenario failed. Setelah proses iterasi, seluruh skenario dinyatakan passed. Pengujian ini menunjukkan bahwa kualitas modul tidak hanya bergantung pada tampilan antarmuka, tetapi juga pada konsistensi validasi data, relasi 	extit{attempt}, proses publikasi nilai, dan komunikasi issue yang jelas di dalam tim.

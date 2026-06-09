@@ -54,7 +54,7 @@ Tabel~\ref{tab:pemetaan_silabus_bab3} menunjukkan pemetaan antara poin silabus d
 		\hline
 		7 & Rancangan UI\slash UX, front end & Neon Interfaces: dokumentasi komponen via Storybook. Alur antarmuka Import Nilai Neon Uji dijelaskan pada \emph{Aktivitas}. \\
 		\hline
-		8 & Rancangan model data\slash database\slash server & Model data konseptual: Gambar~\ref{fig:model_data_import_neon_uji}. Entitas: Siswa, Kelompok Belajar, Jenjang Studi, Komponen Penilaian, Quiz Set, Attempt, dan Nilai IRT. \\
+		8 & Rancangan model data\slash database\slash server & Model data konseptual: Gambar~\ref{fig:model_data_import_neon_uji}. Entitas: Siswa, Kelompok Belajar, Jenjang Studi, Komponen Penilaian, Quiz Set, \textit{Attempt}, dan Nilai IRT. \\
 		\hline
 	\end{tabularx}
 \end{table}
@@ -62,7 +62,7 @@ Tabel~\ref{tab:pemetaan_silabus_bab3} menunjukkan pemetaan antara poin silabus d
 \subsection{Alur Bisnis dan Model Data Konseptual}
 Alur bisnis fitur Import Nilai Neon Uji dimulai dari pengguna yang memilih sumber data dari Neon Uji, menentukan tipe hasil penilaian, memilih jenjang studi dan target, memetakan quiz ke komponen penilaian, melihat pratinjau nilai, lalu mempublikasikan nilai ke Neutron. Alur ini terdokumentasi secara lengkap pada flowchart di Bab~\ref{chap:pengujian} (Gambar~\ref{fig:flowchart_integrasi_neon_uji}).
 
-Model data konseptual pada Gambar~\ref{fig:model_data_import_neon_uji} menunjukkan entitas utama yang terlibat dalam fitur Import Nilai Neon Uji beserta relasinya. Entitas \textit{Jenjang Studi} menjadi konteks awal yang menghubungkan \textit{Siswa} atau \textit{Kelompok Belajar} sebagai target penilaian. Dari jenjang studi, \textit{Quiz Set} atau \textit{Quiz} dipilih sebagai sumber data dari Neon Uji. \textit{Komponen Penilaian} menjadi jembatan antara konteks penilaian dan quiz yang dipetakan. \textit{Attempt} merekam riwayat pengerjaan kuis oleh siswa, sedangkan \textit{Nilai IRT} menyimpan skor akhir yang dihasilkan dari proses penilaian.
+Model data konseptual pada Gambar~\ref{fig:model_data_import_neon_uji} menunjukkan entitas utama yang terlibat dalam fitur Import Nilai Neon Uji beserta relasinya. Entitas \textit{Jenjang Studi} menjadi konteks awal yang menghubungkan \textit{Siswa} atau \textit{Kelompok Belajar} sebagai target penilaian. Dari jenjang studi, \textit{Quiz Set} atau \textit{Quiz} dipilih sebagai sumber data dari Neon Uji. \textit{Komponen Penilaian} menjadi jembatan antara konteks penilaian dan quiz yang dipetakan. \textit{Attempt} (upaya pengerjaan kuis) merekam riwayat pengerjaan kuis oleh siswa, sedangkan \textit{Nilai IRT} (\textit{Item Response Theory}) menyimpan skor akhir yang dihasilkan dari proses penilaian.
 
 \begin{figure}[htbp]
 	\centering
@@ -78,8 +78,8 @@ Model data konseptual pada Gambar~\ref{fig:model_data_import_neon_uji} menunjukk
 		\node (quizset) [right=1.5cm of jenjang] {Quiz Set};
 		\node (quiz) [below=of quizset] {Quiz};
 		\node (komponen) [right=1.5cm of quizset] {Komponen\\Penilaian};
-		\node (attempt) [below=of komponen] {Attempt};
-		\node (nilai) [right=1.5cm of komponen] {Nilai IRT};
+		\node (attempt) [below=of komponen] {Attempt\\\scriptsize(upaya pengerjaan)};
+		\node (nilai) [right=1.5cm of komponen] {Nilai IRT\\\scriptsize(\textit{Item Response Theory})};
 
 		\draw[arrow] (jenjang) -- (siswa);
 		\draw[arrow] (jenjang) -- (kelompok);
@@ -98,7 +98,7 @@ Model data konseptual pada Gambar~\ref{fig:model_data_import_neon_uji} menunjukk
 \section{Aktivitas}
 Pada proyek Neon Interfaces, aktivitas pengembangan diarahkan pada penyusunan dokumentasi komponen dan penguatan \textit{design library} berbasis \textit{shadcn/ui}. Pekerjaan ini dilakukan melalui Storybook~\cite{storybook_docs,shadcn_ui} yang berfungsi sebagai media dokumentasi interaktif untuk komponen antarmuka. Komponen seperti \textit{button}, \textit{badge}, dan \textit{textarea} didokumentasikan dengan variasi properti, contoh penggunaan, serta dukungan tema seperti \textit{neon}, \textit{belajar}, dan \textit{uji}. Dokumentasi tersebut membantu menjaga konsistensi antarmuka dan mempercepat proses penggunaan ulang komponen pada proyek lain.
 
-Pada repositori Pendidikan, aktivitas pengembangan berfokus pada fitur Import Nilai Neon Uji. Di dalam kode, fitur ini dibagi menjadi dua alur hasil penilaian, yaitu \code{quiz} dan \code{quiz-set}; alur \code{quiz} membutuhkan target siswa atau kelompok belajar, sedangkan alur \code{quiz-set} memakai event dan tipe penilaian setelah jenjang studi dipilih~\cite{pendidikan_useImportNeonUji_composable,pendidikan_useImportNeonUji_helpers}. Alur fitur mencakup pemilihan informasi penilaian melalui filter bertingkat, pembuatan komponen penilaian, pemetaan kuis terhadap komponen penilaian, pratinjau data nilai, dan publikasi nilai ke sistem. Pengembangan fitur ini membutuhkan pemahaman terhadap relasi antara data siswa, kelompok belajar, tipe penilaian, komponen penilaian, quiz set, attempt, dan nilai akhir.
+Pada repositori Pendidikan, aktivitas pengembangan berfokus pada fitur Import Nilai Neon Uji. Di dalam kode, fitur ini dibagi menjadi dua alur hasil penilaian, yaitu \code{quiz} dan \code{quiz-set}; alur \code{quiz} membutuhkan target siswa atau kelompok belajar, sedangkan alur \code{quiz-set} memakai event dan tipe penilaian setelah jenjang studi dipilih~\cite{pendidikan_useImportNeonUji_composable,pendidikan_useImportNeonUji_helpers}. Alur fitur mencakup pemilihan informasi penilaian melalui filter bertingkat, pembuatan komponen penilaian, pemetaan kuis terhadap komponen penilaian, pratinjau data nilai, dan publikasi nilai ke sistem. Pengembangan fitur ini membutuhkan pemahaman terhadap relasi antara data siswa, kelompok belajar, tipe penilaian, komponen penilaian, quiz set, \textit{attempt} (upaya pengerjaan kuis), dan nilai akhir.
 
 Selain implementasi fitur, aktivitas yang dilakukan juga meliputi diskusi kebutuhan dengan pembimbing dan anggota tim, pembacaan struktur kode yang sudah ada, penyesuaian rancangan berdasarkan umpan balik, serta perbaikan modul setelah dilakukan pengecekan. Aktivitas tersebut memperlihatkan bahwa pengembangan perangkat lunak di industri berlangsung secara iteratif dan membutuhkan koordinasi lintas peran.
 
@@ -114,7 +114,7 @@ Hasil utama dari pelaksanaan mata kuliah ini adalah meningkatnya kemampuan mener
 
 Pada fitur Import Nilai Neon Uji, pengembangan modul membantu menyusun alur import nilai yang lebih terstruktur. Pengguna dapat memilih konteks penilaian, menghubungkan quiz set dengan komponen penilaian, melihat pratinjau nilai, dan mempublikasikan data nilai ke sistem Pendidikan. Fitur ini mengurangi kebutuhan pemindahan data secara manual dan membantu menjaga konsistensi nilai yang berasal dari Neon Uji~\cite{pendidikan_useImportNeonUji_composable,pendidikan_import_neon_uji_component,pendidikan_import_neon_uji_services}.
 
-Gambar~\ref{fig:output_project_neon} menunjukkan ringkasan output pekerjaan selama magang, mulai dari dokumentasi komponen pada Neon Interfaces, diskusi design library, hingga implementasi fitur Import Nilai Neon Uji pada repositori Pendidikan. Karena hasil kerja mencakup lebih dari satu deliverable, gambar ini dipakai sebagai ringkasan umum dari pekerjaan yang berhasil diselesaikan.
+Gambar~\ref{fig:output_project_neon} menunjukkan ringkasan output pekerjaan selama magang, mulai dari dokumentasi komponen pada Neon Interfaces, diskusi \textit{design library}, hingga implementasi fitur Import Nilai Neon Uji pada repositori Pendidikan. Karena hasil kerja mencakup lebih dari satu deliverable, gambar ini dipakai sebagai ringkasan umum dari pekerjaan yang berhasil diselesaikan.
 
 \begin{figure}[htbp]
     \centering
