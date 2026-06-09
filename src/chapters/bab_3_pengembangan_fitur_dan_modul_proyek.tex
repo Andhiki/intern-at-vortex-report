@@ -17,7 +17,7 @@ Mata kuliah ini berfokus pada penerapan kemampuan pengembangan fitur dan modul p
 \section{Silabus}
 Mahasiswa dapat mendeskripsikan kegiatan internship\slash MBKM yang memberikan penjelasan mengenai desain rancangan pengembangan perangkat lunak, atau perangkat keras, atau jaringan komputer, atau server\slash cloud, seperti desain pengembangan fitur\slash modul\slash komponen\slash subsistem\slash sistem\slash program\slash prototipe\slash software\slash infrastruktur\slash teknologi\slash server\slash jaringan komputer\slash cloud, dll. Misalnya dalam bentuk diagram, atau uraian hal-hal berikut (konteks disesuaikan dari\slash dengan kegiatan internship\slash MBKM):
 \begin{enumerate}
-	\item Deskripsi\slash gambaran umum proses bisnis, bisnis logik sistem\slash proyek.
+	\item Deskripsi\slash gambaran umum proses bisnis, logika bisnis sistem\slash proyek.
 	\item Deskripsi\slash desain (dari sisi) hardware\slash peralatan\slash teknologi\slash server\slash networking\slash cloud, dll.
 	\item Deskripsi\slash desain (dari sisi) perangkat lunak (yang ada atau akan dikembangkan).
 	\item Diagram arsitektur sistem.
@@ -40,13 +40,13 @@ Tabel~\ref{tab:pemetaan_silabus_bab3} menunjukkan pemetaan antara poin silabus d
 		\hline
 		\textbf{No} & \textbf{Poin Silabus} & \textbf{Bukti dalam Laporan} \\
 		\hline
-		1 & Proses bisnis, bisnis logik sistem & Alur bisnis fitur Import Nilai Neon Uji dijelaskan pada \emph{Aktivitas} dan Gambar~\ref{fig:flowchart_integrasi_neon_uji} (Bab~\ref{chap:pengujian}). Proses pemilihan konteks penilaian, pemetaan quiz, pratinjau nilai, dan publikasi nilai dijelaskan secara naratif. \\
+		1 & Proses bisnis, logika bisnis sistem & Alur bisnis fitur Import Nilai Neon Uji dijelaskan pada \emph{Aktivitas} dan Gambar~\ref{fig:flowchart_integrasi_neon_uji} (Bab~\ref{chap:pengujian}). Proses pemilihan konteks penilaian, pemetaan quiz, pratinjau nilai, dan publikasi nilai dijelaskan secara naratif. \\
 		\hline
-		2 & Hardware\slash peralatan\slash teknologi\slash server\slash networking\slash cloud & Teknologi: Nuxt~3, Vue~3, MongoDB, Tailwind CSS, Storybook. Aplikasi berjalan pada arsitektur \textit{client-side rendering} dengan layanan backend via API. Infrastruktur server dioperasikan tim infrastruktur perusahaan tanpa akses konfigurasi oleh magang. \\
+		2 & Hardware\slash peralatan\slash teknologi\slash server\slash networking\slash cloud & Teknologi: Nuxt~3, Vue~3, MongoDB, Tailwind CSS, Storybook. Aplikasi berjalan dengan pendekatan \textit{client-side rendering} dan berkomunikasi dengan layanan backend melalui API. Konfigurasi infrastruktur server dikelola oleh tim infrastruktur perusahaan sehingga tidak menjadi ruang lingkup utama pekerjaan magang. \\
 		\hline
 		3 & Perangkat lunak yang dikembangkan & Arsitektur kode fitur Import Nilai Neon Uji: page, component, composable, service, dan helper dijelaskan pada Bab~\ref{chap:pengujian}. \\
 		\hline
-		4 & Diagram arsitektur sistem & Gambar~\ref{fig:flowchart_integrasi_neon_uji} (Bab~\ref{chap:pengujian}). Komponen Neon Interfaces didokumentasikan via Storybook. \\
+		4 & Diagram arsitektur sistem & Diagram alur integrasi sistem ditunjukkan pada Gambar~\ref{fig:flowchart_integrasi_neon_uji} (Bab~\ref{chap:pengujian}). Diagram tersebut digunakan sebagai representasi arsitektur proses pada level modul karena akses terhadap arsitektur infrastruktur penuh berada pada tim internal perusahaan. Komponen Neon Interfaces didokumentasikan via Storybook. \\
 		\hline
 		5 & Detail fitur\slash spesifikasi sistem & Fitur Import Nilai Neon Uji: alur quiz, quiz-set, pemetaan komponen penilaian, publikasi nilai (\emph{Aktivitas}). Neon Interfaces: dokumentasi komponen antarmuka. \\
 		\hline
@@ -54,15 +54,16 @@ Tabel~\ref{tab:pemetaan_silabus_bab3} menunjukkan pemetaan antara poin silabus d
 		\hline
 		7 & Rancangan UI\slash UX, front end & Neon Interfaces: dokumentasi komponen via Storybook. Alur antarmuka Import Nilai Neon Uji dijelaskan pada \emph{Aktivitas}. \\
 		\hline
-		8 & Rancangan model data\slash database\slash server & Model data konseptual: Gambar~\ref{fig:model_data_import_neon_uji}. Entitas: Siswa, Kelompok Belajar, Jenjang Studi, Komponen Penilaian, Quiz Set, \textit{Attempt}, dan Nilai IRT. \\
+		8 & Rancangan model data\slash database\slash server & Model data konseptual dan alur validasi data: Gambar~\ref{fig:model_data_import_neon_uji}. Entitas yang terlibat meliputi Siswa, Kelompok Belajar, Jenjang Studi, Komponen Penilaian, Quiz Set, \textit{Attempt}, dan Nilai IRT. \\
 		\hline
 	\end{tabularx}
 \end{table}
 
-\subsection{Alur Bisnis dan Model Data Konseptual}
+\subsection{Pemetaan Silabus dan Rancangan Fitur}
+\subsubsection{Alur Bisnis dan Model Data Konseptual}
 Alur bisnis fitur Import Nilai Neon Uji dimulai dari pengguna yang memilih sumber data dari Neon Uji, menentukan tipe hasil penilaian, memilih jenjang studi dan target, memetakan quiz ke komponen penilaian, melihat pratinjau nilai, lalu mempublikasikan nilai ke Neutron. Alur ini terdokumentasi secara lengkap pada flowchart di Bab~\ref{chap:pengujian} (Gambar~\ref{fig:flowchart_integrasi_neon_uji}).
 
-Model alur data pada Gambar~\ref{fig:model_data_import_neon_uji} menunjukkan bahwa import nilai bergantung pada relasi antara siswa di Neutron Office dan data pengerjaan quiz di Neon Uji. Setelah pengguna memilih siswa dan quiz, sistem mengambil \textit{Quiz Context} berdasarkan quiz yang dipilih, lalu mencocokkan \code{student.userId} dengan \code{QuizContext.userId}. Dari context yang sesuai, sistem mengambil \textit{Quiz Attempt} berstatus selesai. Import hanya valid apabila setiap siswa dan setiap quiz yang dipetakan memiliki attempt bernilai. Jika ada siswa yang belum memiliki attempt untuk quiz yang dipilih, proses import perlu diblokir dan sistem menampilkan pesan kesalahan agar nilai tidak terpublikasi secara parsial.
+Model alur data pada Gambar~\ref{fig:model_data_import_neon_uji} menunjukkan bahwa import nilai bergantung pada relasi antara siswa di Neutron Office dan data pengerjaan quiz di Neon Uji. Setelah pengguna memilih siswa dan quiz, sistem mengambil \textit{Quiz Context} berdasarkan quiz yang dipilih, lalu mencocokkan \code{student.userId} dengan \code{userId} pada \textit{Quiz Context}. Dari context yang sesuai, sistem mengambil \textit{Quiz Attempt} berstatus selesai. Proses import hanya dapat dilakukan apabila setiap siswa pada target dan setiap quiz yang dipetakan memiliki attempt yang valid serta nilai yang dapat diambil. Jika ada siswa yang belum memiliki attempt untuk quiz yang dipilih, proses import perlu diblokir dan sistem menampilkan pesan kesalahan agar nilai tidak terpublikasi secara parsial.
 
 \begin{figure}[htbp]
 	\centering
@@ -82,8 +83,8 @@ Model alur data pada Gambar~\ref{fig:model_data_import_neon_uji} menunjukkan bah
 		\node[process, below=of attemptValid] (score) {Ambil skor attempt\\atau nilai IRT};
 		\node[process, below=of score] (map) {Map skor ke\\komponen penilaian};
 		\node[result, below=of map] (import) {Import nilai ke\\Neutron Office};
-		\node[result, right=1.7cm of contextValid] (blockContext) {Block import\\tampilkan error};
-		\node[result, right=1.7cm of attemptValid] (blockAttempt) {Block import\\``Siswa X belum\\attempt Quiz Y''};
+		\node[result, right=1.7cm of contextValid] (blockContext) {Blokir import dan\\tampilkan pesan kesalahan};
+		\node[result, right=1.7cm of attemptValid] (blockAttempt) {Blokir import:\\``Siswa X belum\\mengerjakan Quiz Y''};
 
 		\draw[arrow] (select) -- (contexts);
 		\draw[arrow] (contexts) -- (contextValid);
