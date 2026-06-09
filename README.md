@@ -2,6 +2,8 @@
 
 LaTeX source for final MBKM internship report. Report is built from `intern-report.tex` and split into reusable source files under `src/`.
 
+Compiled PDF: [intern-report.pdf](intern-report.pdf)
+
 ## Project Structure
 
 ```text
