@@ -8,12 +8,12 @@
 	\textbf{Nama Mata Kuliah} & : & Internship: Pengujian Unit dan Modul Proyek                                     \\
 	\textbf{Bobot}            & : & 3 SKS                                                                           \\
 	\textbf{Bentuk Kegiatan}  & : & Magang MBKM sebagai Frontend Developer Intern di PT Vortex Buana Edumedia        \\
-	\textbf{Proyek Terkait}   & : & Pengujian integrasi Neon Uji dengan aplikasi Neutron pada repositori Pendidikan \\
+	\textbf{Proyek Terkait}   & : & Pengujian integrasi Neon Uji dengan Neutron Office pada repositori Pendidikan \\
 \end{tabularx}
 \par\vspace{0.5\baselineskip}
 \endgroup
 
-Mata kuliah ini berfokus pada kemampuan menyusun dan menjalankan pengujian terhadap unit serta modul perangkat lunak. Dalam kegiatan magang, pembahasan difokuskan pada fitur Integrasi Neon Uji dengan aplikasi Neutron, yaitu alur import nilai dari hasil pengerjaan kuis di Neon Uji ke modul penilaian pada aplikasi Neutron. Fokus ini dipilih karena fitur tersebut memiliki alur data, validasi, pemetaan kuis, pengambilan attempt, dan publikasi nilai yang dapat diuji secara lebih jelas dibandingkan dokumentasi komponen antarmuka.
+Mata kuliah ini berfokus pada kemampuan menyusun dan menjalankan pengujian terhadap unit serta modul perangkat lunak. Dalam kegiatan magang, pembahasan difokuskan pada fitur Integrasi Neon Uji dengan Neutron Office, yaitu alur import nilai dari hasil pengerjaan kuis di Neon Uji ke modul penilaian pada Neutron. Fokus ini dipilih karena fitur tersebut memiliki alur data, validasi, pemetaan kuis, pengambilan attempt, dan publikasi nilai yang dapat diuji secara lebih jelas dibandingkan dokumentasi komponen antarmuka.
 
 \section{Silabus}
 Mahasiswa dapat menyusun desain pengujian unit dari perangkat lunak\slash modul\slash subsistem\slash prototip dan melakukan pengujian dengan menggunakan data uji untuk kegiatan internship/MBKM. Deskripsi pengujian unit/modul dapat meliputi hal-hal berikut:
@@ -25,27 +25,23 @@ Mahasiswa dapat menyusun desain pengujian unit dari perangkat lunak\slash modul\
 	\item Hasil pengujian, validasi/verifikasi, serta pembahasan dari hasil uji.
 \end{enumerate}
 
-\section{Aktivitas}
-Aktivitas pengujian dilakukan pada fitur Integrasi Neon Uji dengan aplikasi Neutron. Alur fitur dimulai dari pengguna masuk ke menu Penilaian, memilih tombol tambah penilaian, memilih sumber data dari Neon Uji, menentukan tipe hasil penilaian, memilih jenjang studi, memilih target siswa atau kelompok belajar, memilih tipe penilaian, memetakan quiz ke komponen penilaian, menghasilkan data nilai, lalu mempublikasikan nilai ke aplikasi Neutron.
+\section{Tujuan dan Strategi Pengujian}
+Tujuan pengujian adalah memvalidasi bahwa fitur Import Nilai Neon Uji berfungsi sesuai kebutuhan bisnis dan ekspektasi pengguna, baik pada tingkat unit maupun modul. Pengujian dilakukan melalui dua pendekatan yang saling melengkapi.
 
-Alur tersebut terdokumentasi pada flowchart integrasi Neon Uji ke aplikasi Neutron. Flowchart menunjukkan pembagian aktivitas antara pengguna dan sistem, termasuk kondisi pemilihan input manual atau dari Uji, pemilihan Quiz/Quiz Set, pemilihan siswa atau kelompok belajar, proses generate komponen penilaian, pengambilan nilai IRT atau skor kuis, serta validasi identitas sebelum nilai diambil.
+Pendekatan pertama adalah \textbf{pengujian manual berbasis skenario}, yaitu pengeksekusian alur fitur secara langsung di browser untuk mengidentifikasi bug pada antarmuka, validasi data, dan alur navigasi. Pendekatan ini dipilih karena fitur berjalan di lingkungan frontend yang melibatkan interaksi pengguna, state management, dan integrasi data dari service. Penulis menyusun 21 skenario pengujian manual pada Coda, mengeksekusinya sendiri, lalu meminta tim QA melakukan verifikasi ulang menggunakan metode dan tools mereka sendiri. Hasil verifikasi QA dijadikan acuan laporan karena mencerminkan perspektif pengujian yang lebih independen.
+
+Pendekatan kedua adalah \textbf{pemeriksaan kode dan rancangan unit test}, yaitu penelaahan struktur kode untuk mengidentifikasi unit logika yang dapat diuji secara terpisah, disertai contoh rancangan unit test sebagai ilustrasi. Pendekatan ini bersifat konseptual dan ditujukan untuk memperlihatkan keterkaitan antara temuan bug manual dengan logika pada kode sumber. Rancangan unit test yang disajikan tidak dijalankan dalam pipeline pengujian repositori, melainkan disusun untuk menunjukkan bagaimana helper murni dapat diuji secara terpisah jika pengujian otomatis diintegrasikan ke dalam alur kerja.
+
+\section{Alur Fitur yang Diuji}
+Alur fitur dimulai dari pengguna masuk ke menu Penilaian, memilih tombol tambah penilaian, memilih sumber data dari Neon Uji, menentukan tipe hasil penilaian, memilih jenjang studi, memilih target siswa atau kelompok belajar, memilih tipe penilaian, memetakan quiz ke komponen penilaian, menghasilkan data nilai, lalu mempublikasikan nilai ke Neutron.
+
+Alur tersebut terdokumentasi pada flowchart integrasi Neon Uji ke Neutron. Flowchart menunjukkan pembagian aktivitas antara pengguna dan sistem, termasuk kondisi pemilihan input manual atau dari Uji, pemilihan Quiz\slash Quiz Set, pemilihan siswa atau kelompok belajar, proses generate komponen penilaian, pengambilan nilai IRT atau skor kuis, serta validasi identitas sebelum nilai diambil.
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[height=0.95\textheight]{assets/images/quiz-integrasi-uji-ke-penilaian-neutron.jpg}
-	\caption{Flowchart integrasi Neon Uji dengan aplikasi Neutron}
+	\caption{Flowchart integrasi Neon Uji dengan Neutron Office}
 	\label{fig:flowchart_integrasi_neon_uji}
-\end{figure}
-
-Selain pengujian berdasarkan alur pengguna, dilakukan juga pemeriksaan kode untuk melihat unit logika yang dapat diuji. Pemeriksaan kode menemukan implementasi fitur pada beberapa file utama di repositori Pendidikan, yaitu halaman \code{import-neon-uji.vue}, komponen \code{GradingImportNeonUji.vue}, composable \code{useImportNeonUji.ts}, dan service fetch pada \code{services.ts}. Pada composable tersebut terdapat logika validasi filter, reset filter bertingkat, normalisasi target siswa/kelompok belajar, pemilihan skor IRT atau skor attempt, serta proses publikasi nilai.
-
-Penulis menyusun daftar item pengujian manual pada Coda berdasarkan alur fitur yang dikembangkan, lalu mengeksekusi setiap skenario secara langsung untuk mengidentifikasi bug pada tahap awal. Berdasarkan \code{assets/coda-test-report.md} dan \code{assets/coda-test-items.json}, pengujian awal menghasilkan 21 skenario dengan 11 skenario berstatus \textit{Passed} dan 10 skenario berstatus \textit{Failed}. Tim QA kemudian melakukan verifikasi ulang menggunakan metode dan tools mereka sendiri untuk memastikan temuan penulis konsisten. Hasil awal tersebut tidak langsung dianggap sebagai hasil akhir, tetapi digunakan sebagai dasar untuk membuat daftar issue, membahas prioritas perbaikan pada daily standup, melakukan perbaikan, lalu menjalankan pengujian ulang sampai seluruh skenario dapat dinyatakan \textit{Passed}.
-
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.95\textwidth]{assets/images/list-test-case-in-coda.png}
-	\caption{Daftar test case fitur Integrasi Neon Uji pada Coda}
-	\label{fig:coda_test_case_list}
 \end{figure}
 
 \section{Konsep Dasar yang Berkaitan dengan Silabus}
@@ -55,7 +51,57 @@ Pengujian modul berfokus pada interaksi beberapa unit dalam satu alur kerja. Pad
 
 Konsep lain yang berkaitan adalah debugging dan regresi. Debugging dilakukan untuk menelusuri penyebab kegagalan seperti data attempt tidak ditemukan, data siswa tidak terbaca, atau tombol aktif ketika data belum lengkap. Regresi perlu diperhatikan agar perubahan pada validasi atau tampilan tidak merusak skenario yang sebelumnya sudah berhasil.
 
-\section{Pemeriksaan Kode dan Contoh Unit Test}
+\section{Pengujian Manual dan Verifikasi QA}
+
+\subsection{Penyusunan Skenario Pengujian}
+Daftar item pengujian manual disusun pada Coda berdasarkan alur fitur yang dikembangkan, lalu setiap skenario dieksekusi secara langsung untuk mengidentifikasi bug pada tahap awal. Berdasarkan \code{assets/coda-test-report.md} dan \code{assets/coda-test-items.json}, pengujian awal menghasilkan 21 skenario dengan 11 skenario berstatus \textit{Passed} dan 10 skenario berstatus \textit{Failed}. Tim QA kemudian melakukan verifikasi ulang menggunakan metode dan tools mereka sendiri untuk memastikan konsistensi temuan. Hasil awal tersebut tidak langsung dianggap sebagai hasil akhir, tetapi digunakan sebagai dasar untuk membuat daftar issue, membahas prioritas perbaikan pada daily stand-up, melakukan perbaikan, lalu menjalankan pengujian ulang sampai seluruh skenario dapat dinyatakan \textit{Passed}.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.95\textwidth]{assets/images/list-test-case-in-coda.png}
+	\caption{Daftar test case fitur Import Nilai Neon Uji pada Coda}
+	\label{fig:coda_test_case_list}
+\end{figure}
+
+\subsection{Ringkasan Hasil Pengujian Manual}
+Ringkasan skenario pengujian manual dapat dilihat pada Tabel~\ref{tab:ringkasan_pengujian_import_neon_uji}. Kolom pengujian awal menunjukkan kondisi ketika bug pertama kali ditemukan, sedangkan kolom setelah iterasi menunjukkan hasil setelah issue dibahas pada daily stand-up, diperbaiki, dan diuji ulang.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Ringkasan iterasi pengujian manual fitur Import Nilai Neon Uji}
+	\label{tab:ringkasan_pengujian_import_neon_uji}
+	\begin{tabularx}{\textwidth}{|c|>{\raggedright\arraybackslash}p{3.7cm}|c|c|>{\raggedright\arraybackslash}X|}
+		\hline
+		\textbf{No}                          & \textbf{Kelompok Skenario}                & \textbf{Awal} & \textbf{Akhir}                 & \textbf{Catatan Iterasi}                                                                                                                                                                \\
+		\hline
+		1                                    & Navigasi dan pemilihan input penilaian    & 1P/1F          & 2P/0F                            & Issue navigasi import dibahas pada daily stand-up, lalu alur masuk ke Import Nilai Neon Uji diperbaiki dan diuji ulang.                                                        \\
+		\hline
+		2                                    & Pemilihan filter penilaian                & 4P/3F          & 7P/0F                            & Temuan pada pemilihan siswa, kelompok belajar, dan tipe penilaian dicatat sebagai issue validasi data filter.                                         \\
+		\hline
+		3                                    & Aktivasi tombol dan navigasi tahap lanjut & 3P/1F          & 4P/0F                            & Status tombol diperbaiki agar mengikuti kelengkapan input dan kelengkapan pemetaan quiz.                        \\
+		\hline
+		4                                    & Pemetaan komponen penilaian ke quiz       & 2P/0F          & 2P/0F                            & Skenario pemetaan quiz sudah lolos sejak pengujian awal dan dijadikan acuan regresi.                                                                                                          \\
+		\hline
+		5                                    & Import skor dan publikasi nilai           & 1P/6F          & 7P/0F                            & Issue attempt, student, tampilan IRT, dan notifikasi publikasi diperbaiki melalui beberapa siklus retest. \\
+		\hline
+		\multicolumn{2}{|c|}{\textbf{Total}} & \textbf{11P/10F}                               & \textbf{21P/0F}     & Semua skenario dinyatakan passed setelah issue ditindaklanjuti dan diuji ulang.                                                                                                                                                                                          \\
+		\hline
+	\end{tabularx}
+\end{table}
+
+\subsection{Iterasi Issue Melalui Daily Stand-up}
+Hasil pengujian awal menghasilkan beberapa temuan yang tidak dapat diselesaikan secara mandiri tanpa koordinasi tim. Setiap temuan dicatat, dikelompokkan berdasarkan dampaknya terhadap alur import nilai, lalu dibahas pada daily stand-up bersama pembimbing dan anggota tim. Daily stand-up digunakan untuk menjelaskan gejala bug, langkah reproduksi, kondisi data yang digunakan, serta prioritas perbaikan yang perlu dikerjakan terlebih dahulu.
+
+Temuan dengan prioritas tinggi terdapat pada skenario import skor Non-IRT untuk siswa dan kelompok belajar. Pada skenario siswa, sistem menampilkan pesan ``Tidak ada quiz attempt yang ditemukan'' meskipun siswa disebut sudah mengerjakan quiz. Pada skenario kelompok belajar, sistem menampilkan pesan ``Tidak ada student yang ditemukan'' meskipun kelompok belajar memiliki siswa. Temuan tersebut menunjukkan bahwa validasi relasi data antara target, context quiz, attempt, dan student menjadi bagian penting dalam pengujian modul.
+
+Temuan dengan prioritas medium berkaitan dengan status tombol dan tampilan hasil IRT. Tombol \textit{Lanjutkan} tidak kembali nonaktif ketika input tipe penilaian dikosongkan, tombol \textit{Hasilkan Penilaian} aktif walaupun quiz pada komponen belum lengkap, dan skenario import skor IRT masih menampilkan kolom score yang seharusnya tidak muncul. Temuan tersebut memperlihatkan perlunya pengujian regresi pada state antarmuka dan logika pemetaan nilai.
+
+Setelah issue dibahas, perbaikan dilakukan secara bertahap. Perbaikan tidak hanya berfokus pada tampilan, tetapi juga pada validasi data, pemetaan target, pengecekan attempt, dan kondisi tombol. Setiap perbaikan kemudian diuji ulang menggunakan skenario yang sama agar hasilnya dapat dibandingkan dengan pengujian awal. Siklus ini dilakukan sampai semua skenario yang sebelumnya failed berubah menjadi passed dan tidak merusak skenario yang sejak awal sudah passed.
+
+\section{Pemeriksaan Kode dan Rancangan Unit Test}
+Bagian ini menelaah struktur kode fitur Import Nilai Neon Uji untuk mengidentifikasi unit logika yang dapat diuji secara terpisah, kemudian menyusun rancangan unit test sebagai ilustrasi. Perlu digarisbawahi bahwa rancangan unit test berikut bersifat konseptual: test case disusun berdasarkan helper murni yang ada di dalam kode sumber, tetapi belum dijalankan dalam pipeline pengujian repositori. Data pada tabel sebelumnya berasal dari pengujian manual yang diverifikasi oleh tim QA, bukan dari unit test otomatis.
+
+\subsection{Struktur Kode Fitur}
 Berdasarkan penelusuran pada repositori Pendidikan, kode fitur Integrasi Neon Uji ditemukan pada file berikut:
 
 \begin{enumerate}
@@ -65,13 +111,12 @@ Berdasarkan penelusuran pada repositori Pendidikan, kode fitur Integrasi Neon Uj
 	\item Service fetch \code{services.ts} untuk query data Neon Uji dan data penilaian.
 \end{enumerate}
 
-Fitur Import Neon Uji dipisah menjadi page, component, composable, service, dan helper. Logika yang paling cocok diuji secara terpisah berada di helper murni, sehingga contoh unit test disusun pada \code{useImportNeonUji.test.ts} untuk memeriksa validasi filter, reset bertingkat, normalisasi target, dan pemilihan skor~\cite{vitest_docs,pendidikan_useImportNeonUji_helpers,pendidikan_useImportNeonUji_test}.
+Fitur Import Nilai Neon Uji dipisah menjadi page, component, composable, service, dan helper. Pemisahan ini memungkinkan pengujian helper secara terpisah karena fungsi-fungsi tersebut tidak bergantung pada halaman atau service~\cite{pendidikan_useImportNeonUji_helpers,pendidikan_useImportNeonUji_test}.
 
-Contoh test ini bersifat representatif untuk kebutuhan laporan. Seluruh 21 skenario pengujian fitur Integrasi Neon Uji dieksekusi secara manual oleh penulis (Andreandhiki), kemudian diverifikasi ulang oleh tim QA menggunakan metode dan tools mereka sendiri. Angka pada tabel berikut merujuk pada hasil validasi QA tersebut, sedangkan contoh unit test di atas disusun untuk memperlihatkan bagaimana logika helper murni dapat diuji secara terpisah jika pemrograman pengujian otomatis diintegrasikan ke dalam alur kerja repositori.
+\subsection{Cuplikan Helper yang Dapat Diuji}
+Cuplikan berikut menunjukkan tiga fungsi helper yang representative untuk diuji. Fungsi pemisahan validasi filter memastikan kedua alur (\code{quiz} dan \code{quiz-set}) memiliki kebutuhan input yang berbeda. Fungsi normalisasi target memastikan input tunggal maupun array diproses menjadi daftar ID yang konsisten. Fungsi pemilihan skor memastikan nilai IRT digunakan ketika tersedia dan valid, sedangkan skor attempt digunakan sebagai cadangan~\cite{pendidikan_useImportNeonUji_helpers}.
 
-Cuplikan berikut menunjukkan salah satu fungsi helper yang diuji. Fungsi ini memisahkan validasi filter untuk alur \code{quiz-set} dan alur \code{quiz}. Pemisahan tersebut penting karena kebutuhan input kedua alur tidak sama. Pada alur \code{quiz-set}, sistem membutuhkan event dan tipe penilaian, sedangkan pada alur \code{quiz}, sistem juga membutuhkan jenis penilaian dan target siswa atau kelompok belajar~\cite{pendidikan_useImportNeonUji_helpers}.
-
-\begin{lstlisting}[language=JavaScript, caption={Cuplikan validasi filter Import Neon Uji}, label={lst:helper_validation_import_neon_uji}]
+\begin{lstlisting}[language=JavaScript, caption={Cuplikan validasi filter Import Nilai Neon Uji}, label={lst:helper_validation_import_neon_uji}]
 export function canProceedImportNeonUji(filters) {
   if (filters.tipeHasilPenilaian === 'quiz-set') {
     return Boolean(
@@ -95,8 +140,6 @@ export function canProceedImportNeonUji(filters) {
   )
 }
 \end{lstlisting}
-
-Selain validasi filter, pengujian juga diarahkan pada normalisasi target dan pemilihan sumber skor. Normalisasi target memastikan input tunggal maupun array diproses menjadi daftar ID yang konsisten. Pemilihan skor memastikan nilai IRT digunakan ketika tersedia dan valid, sedangkan skor attempt digunakan sebagai cadangan ketika nilai IRT tidak dapat dipakai.
 
 \begin{lstlisting}[language=JavaScript, caption={Cuplikan normalisasi target dan pemilihan skor}, label={lst:helper_score_import_neon_uji}]
 export function normalizeImportNeonUjiTargetIds(target) {
@@ -122,9 +165,12 @@ export function selectImportNeonUjiScore(attemptScore, irtData) {
 }
 \end{lstlisting}
 
+\subsection{Rancangan Unit Test}
+Berdasarkan helper di atas, rancangan unit test disusun untuk memeriksa validasi filter, reset bertingkat, normalisasi target, dan pemilihan skor. Tabel berikut menunjukkan contoh kasus uji berserta prediksi hasilnya. Rancangan ini mengacu pada pola pengujian unit menggunakan Vitest~\cite{vitest_docs}, tetapi belum dijalankan dalam repositori.
+
 \begin{table}[htbp]
 	\centering
-	\caption{Contoh rancangan unit test fitur Integrasi Neon Uji}
+	\caption{Rancangan unit test untuk helper fitur Import Nilai Neon Uji}
 	\label{tab:unit_test_import_neon_uji}
 	\begin{tabularx}{\textwidth}{|c|>{\raggedright\arraybackslash}p{3.2cm}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{3.2cm}|}
 		\hline
@@ -145,49 +191,14 @@ export function selectImportNeonUjiScore(attemptScore, irtData) {
 	\end{tabularx}
 \end{table}
 
-Contoh unit test yang disusun di atas tidak menggantikan pengujian end-to-end, tetapi membantu memisahkan logika kecil dari alur halaman. Hasil pengujian manual pada tabel berikut tetap berasal dari validasi QA yang saya minta sebagai acuan perbandingan.
-
-\section{Ringkasan Skenario Pengujian Manual}
-Ringkasan skenario pengujian manual dapat dilihat pada Tabel~\ref{tab:ringkasan_pengujian_import_neon_uji}. Kolom pengujian awal menunjukkan kondisi ketika bug pertama kali ditemukan, sedangkan kolom setelah iterasi menunjukkan hasil setelah issue dibahas pada daily standup, diperbaiki, dan diuji ulang.
-
-\begin{table}[htbp]
-	\centering
-	\caption{Ringkasan iterasi pengujian manual fitur Integrasi Neon Uji}
-	\label{tab:ringkasan_pengujian_import_neon_uji}
-	\begin{tabularx}{\textwidth}{|c|>{\raggedright\arraybackslash}p{3.7cm}|c|c|>{\raggedright\arraybackslash}X|}
-		\hline
-		\textbf{No}                          & \textbf{Kelompok Skenario}                & \textbf{Awal} & \textbf{Akhir}                 & \textbf{Catatan Iterasi}                                                                                                                                                                \\
-		\hline
-		1                                    & Navigasi dan pemilihan input penilaian    & 1P/1F          & 2P/0F                            & Issue navigasi import dibahas pada daily standup, lalu alur masuk ke Import Neon Uji diperbaiki dan diuji ulang.                                                        \\
-		\hline
-		2                                    & Pemilihan filter penilaian                & 4P/3F          & 7P/0F                            & Temuan pada pemilihan siswa, kelompok belajar, dan tipe penilaian dicatat sebagai issue validasi data filter.                                         \\
-		\hline
-		3                                    & Aktivasi tombol dan navigasi tahap lanjut & 3P/1F          & 4P/0F                            & Status tombol diperbaiki agar mengikuti kelengkapan input dan kelengkapan pemetaan quiz.                        \\
-		\hline
-		4                                    & Pemetaan komponen penilaian ke quiz       & 2P/0F          & 2P/0F                            & Skenario pemetaan quiz sudah lolos sejak pengujian awal dan dijadikan acuan regresi.                                                                                                          \\
-		\hline
-		5                                    & Import skor dan publikasi nilai           & 1P/6F          & 7P/0F                            & Issue attempt, student, tampilan IRT, dan notifikasi publikasi diperbaiki melalui beberapa siklus retest. \\
-		\hline
-		\multicolumn{2}{|c|}{\textbf{Total}} & \textbf{11P/10F}                               & \textbf{21P/0F}     & Semua skenario dinyatakan passed setelah issue ditindaklanjuti dan diuji ulang.                                                                                                                                                                                          \\
-		\hline
-	\end{tabularx}
-\end{table}
-
-\section{Iterasi Issue Melalui Daily Standup}
-Hasil pengujian awal menghasilkan beberapa issue yang tidak langsung diselesaikan secara terpisah tanpa koordinasi. Setiap temuan dicatat, dikelompokkan berdasarkan dampaknya terhadap alur import nilai, lalu dibahas pada daily standup bersama pembimbing dan anggota tim. Daily standup digunakan untuk menjelaskan gejala bug, langkah reproduksi, kondisi data yang digunakan, serta prioritas perbaikan yang perlu dikerjakan terlebih dahulu.
-
-Temuan dengan prioritas tinggi terdapat pada skenario import skor Non-IRT untuk siswa dan kelompok belajar. Pada skenario siswa, sistem menampilkan pesan ``Tidak ada quiz attempt yang ditemukan'' meskipun siswa disebut sudah mengerjakan quiz. Pada skenario kelompok belajar, sistem menampilkan pesan ``Tidak ada student yang ditemukan'' meskipun kelompok belajar memiliki siswa. Temuan tersebut menunjukkan bahwa validasi relasi data antara target, context quiz, attempt, dan student menjadi bagian penting dalam pengujian modul.
-
-Temuan dengan prioritas medium berkaitan dengan status tombol dan tampilan hasil IRT. Tombol \textit{Lanjutkan} tidak kembali nonaktif ketika input tipe penilaian dikosongkan, tombol \textit{Hasilkan Penilaian} aktif walaupun quiz pada komponen belum lengkap, dan skenario import skor IRT masih menampilkan kolom score yang seharusnya tidak muncul. Temuan tersebut memperlihatkan perlunya pengujian regresi pada state antarmuka dan logika pemetaan nilai.
-
-Setelah issue dibahas, perbaikan dilakukan secara bertahap. Perbaikan tidak hanya berfokus pada tampilan, tetapi juga pada validasi data, pemetaan target, pengecekan attempt, dan kondisi tombol. Setiap perbaikan kemudian diuji ulang menggunakan skenario yang sama agar hasilnya dapat dibandingkan dengan pengujian awal. Siklus ini dilakukan sampai semua skenario yang sebelumnya failed berubah menjadi passed dan tidak merusak skenario yang sejak awal sudah passed.
+Rancangan unit test di atas bersifat ilustratif dan tidak menggantikan pengujian \textit{end-to-end}. Helper murni dipilih untuk dirancang karena logikanya dapat diuji tanpa memuat seluruh halaman atau service. Apabila pengujian otomatis diintegrasikan ke repositori, rancangan ini dapat dikembangkan menjadi suite Vitest yang dijalankan secara berkala untuk mendeteksi regresi pada logika dasar.
 
 \section{Hasil dan Pembahasan}
-Hasil pengujian menunjukkan bahwa fitur Integrasi Neon Uji dengan aplikasi Neutron mengalami peningkatan setelah proses iterasi. Pada pengujian awal, terdapat 11 skenario passed dan 10 skenario failed berdasarkan validasi QA yang dijadikan acuan laporan. Setelah issue dibahas melalui daily standup, diperbaiki, dan diuji ulang, seluruh 21 skenario dapat dinyatakan passed. Perubahan ini menunjukkan bahwa pengujian tidak hanya berfungsi menemukan bug, tetapi juga menjadi alat untuk memandu prioritas perbaikan dan memastikan hasil perbaikan benar-benar menyelesaikan masalah.
+Hasil pengujian manual menunjukkan bahwa fitur Integrasi Neon Uji dengan Neutron Office mengalami peningkatan setelah proses iterasi. Pada pengujian awal, terdapat 11 skenario passed dan 10 skenario failed berdasarkan validasi QA yang dijadikan acuan laporan. Setelah issue dibahas melalui daily stand-up, diperbaiki, dan diuji ulang, seluruh 21 skenario dapat dinyatakan passed. Perubahan ini menunjukkan bahwa pengujian manual berbasis skenario tidak hanya berfungsi menemukan bug, tetapi juga memandu prioritas perbaikan dan memastikan hasil perbaikan benar-benar menyelesaikan masalah.
 
 Pemeriksaan kode membantu menghubungkan hasil pengujian manual dengan unit logika yang relevan. Misalnya, temuan tombol aktif ketika input belum lengkap berkaitan dengan validasi filter dan kelengkapan pemetaan quiz. Temuan attempt tidak ditemukan berkaitan dengan proses pengambilan quiz context dan quiz attempt. Temuan skor IRT berkaitan dengan pemilihan sumber nilai antara \code{finalScore} IRT dan skor attempt biasa.
 
-Pembuatan contoh unit test memperlihatkan bahwa sebagian logika dapat diuji tanpa menjalankan seluruh aplikasi. Validasi filter, reset filter, normalisasi target, dan pemilihan skor dapat dibuat sebagai fungsi murni sehingga lebih mudah diuji dengan data uji kecil. Pendekatan ini membantu mengurangi risiko regresi pada bagian logika dasar sebelum modul diuji kembali melalui alur pengguna~\cite{pendidikan_useImportNeonUji_helpers,pendidikan_useImportNeonUji_test}.
+Rancangan unit test memperlihatkan bahwa sebagian logika dapat diisolasi dari alur halaman penuh. Validasi filter, reset filter, normalisasi target, dan pemilihan skor dapat dibuat sebagai fungsi murni sehingga lebih mudah diuji dengan data uji kecil. Pendekatan ini berpotensi mengurangi risiko regresi pada bagian logika dasar sebelum modul diuji kembali melalui alur pengguna~\cite{pendidikan_useImportNeonUji_helpers,pendidikan_useImportNeonUji_test}.
 
 \section{Kesimpulan}
-Mata kuliah Internship: Pengujian Unit dan Modul Proyek terlaksana melalui penyusunan skenario pengujian manual, pencatatan issue, pembahasan temuan pada daily standup, perbaikan bertahap, pengujian ulang, pemeriksaan kode fitur, dan pembuatan contoh unit test untuk fitur Integrasi Neon Uji dengan aplikasi Neutron. Pada pengujian awal terdapat 21 skenario dengan 11 skenario passed dan 10 skenario failed. Setelah proses iterasi, seluruh skenario dinyatakan passed. Pengujian ini menunjukkan bahwa kualitas modul tidak hanya bergantung pada tampilan antarmuka, tetapi juga pada konsistensi validasi data, relasi attempt, proses publikasi nilai, dan komunikasi issue yang jelas di dalam tim.
+Mata kuliah Internship: Pengujian Unit dan Modul Proyek terlaksana melalui penyusunan skenario pengujian manual, pencatatan issue, pembahasan temuan pada daily stand-up, perbaikan bertahap, pengujian ulang, pemeriksaan kode fitur, dan penyusunan rancangan unit test untuk fitur Integrasi Neon Uji dengan Neutron Office. Pada pengujian awal terdapat 21 skenario dengan 11 skenario passed dan 10 skenario failed. Setelah proses iterasi, seluruh skenario dinyatakan passed. Pengujian ini menunjukkan bahwa kualitas modul tidak hanya bergantung pada tampilan antarmuka, tetapi juga pada konsistensi validasi data, relasi attempt, proses publikasi nilai, dan komunikasi issue yang jelas di dalam tim.

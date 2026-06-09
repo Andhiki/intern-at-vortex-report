@@ -1,12 +1,16 @@
 \chapter{Internship: Pengembangan Fitur dan Modul Proyek}
 
 \section{Identitas Mata Kuliah}
-\begin{itemize}
-    \item \textbf{Kode Mata Kuliah}: MII21-3011
-    \item \textbf{Nama Mata Kuliah}: Internship: Pengembangan Fitur dan Modul Proyek
-    \item \textbf{Bobot}: 4 SKS
-    \item \textbf{Proyek Terkait}: Neon Interfaces dan fitur Import Nilai Neon Uji pada repositori Pendidikan
-\end{itemize}
+\begingroup
+\renewcommand{\arraystretch}{1.15}
+\noindent\begin{tabularx}{\linewidth}{@{}p{3.6cm}@{\hspace{0.2cm}}p{0.2cm}@{\hspace{0.2cm}}X@{}}
+    \textbf{Kode Mata Kuliah} & : & MII21-3011 \\
+    \textbf{Nama Mata Kuliah} & : & Internship: Pengembangan Fitur dan Modul Proyek \\
+    \textbf{Bobot} & : & 4 SKS \\
+    \textbf{Proyek Terkait} & : & Neon Interfaces dan fitur Import Nilai Neon Uji pada repositori Pendidikan
+\end{tabularx}
+\par\vspace{0.5\baselineskip}
+\endgroup
 
 Mata kuliah ini berfokus pada penerapan kemampuan pengembangan fitur dan modul perangkat lunak dalam lingkungan kerja industri. Selama kegiatan magang, capaian mata kuliah diwujudkan melalui kontribusi pada dua area pekerjaan utama, yaitu pengembangan dokumentasi dan \textit{design library} pada Neon Interfaces serta pengembangan fitur Import Nilai Neon Uji pada repositori Pendidikan. Kedua pekerjaan tersebut menuntut pemahaman kebutuhan pengguna, perancangan alur antarmuka, implementasi komponen, integrasi data, dan penyesuaian hasil kerja berdasarkan umpan balik tim.
 
@@ -16,16 +20,16 @@ Silabus mata kuliah ini menuntut mahasiswa menjelaskan proses bisnis, rancangan 
 \section{Aktivitas}
 Pada proyek Neon Interfaces, aktivitas pengembangan diarahkan pada penyusunan dokumentasi komponen dan penguatan \textit{design library} berbasis \textit{shadcn/ui}. Pekerjaan ini dilakukan melalui Storybook~\cite{storybook_docs,shadcn_ui} yang berfungsi sebagai media dokumentasi interaktif untuk komponen antarmuka. Komponen seperti \textit{button}, \textit{badge}, dan \textit{textarea} didokumentasikan dengan variasi properti, contoh penggunaan, serta dukungan tema seperti \textit{neon}, \textit{belajar}, dan \textit{uji}. Dokumentasi tersebut membantu menjaga konsistensi antarmuka dan mempercepat proses penggunaan ulang komponen pada proyek lain.
 
-Pada repositori Pendidikan, aktivitas pengembangan berfokus pada fitur Import Nilai Neon Uji. Di dalam kode, fitur ini dibagi menjadi dua alur hasil penilaian, yaitu \texttt{quiz} dan \texttt{quiz-set}; alur \texttt{quiz} membutuhkan target siswa atau kelompok belajar, sedangkan alur \texttt{quiz-set} memakai event dan tipe penilaian setelah jenjang studi dipilih~\cite{pendidikan_useImportNeonUji_composable,pendidikan_useImportNeonUji_helpers}. Alur fitur mencakup pemilihan informasi penilaian melalui filter bertingkat, pembuatan komponen penilaian, pemetaan kuis terhadap komponen penilaian, pratinjau data nilai, dan publikasi nilai ke sistem. Pengembangan fitur ini membutuhkan pemahaman terhadap relasi antara data siswa, kelompok belajar, tipe penilaian, komponen penilaian, quiz set, attempt, dan nilai akhir.
+Pada repositori Pendidikan, aktivitas pengembangan berfokus pada fitur Import Nilai Neon Uji. Di dalam kode, fitur ini dibagi menjadi dua alur hasil penilaian, yaitu \code{quiz} dan \code{quiz-set}; alur \code{quiz} membutuhkan target siswa atau kelompok belajar, sedangkan alur \code{quiz-set} memakai event dan tipe penilaian setelah jenjang studi dipilih~\cite{pendidikan_useImportNeonUji_composable,pendidikan_useImportNeonUji_helpers}. Alur fitur mencakup pemilihan informasi penilaian melalui filter bertingkat, pembuatan komponen penilaian, pemetaan kuis terhadap komponen penilaian, pratinjau data nilai, dan publikasi nilai ke sistem. Pengembangan fitur ini membutuhkan pemahaman terhadap relasi antara data siswa, kelompok belajar, tipe penilaian, komponen penilaian, quiz set, attempt, dan nilai akhir.
 
 Selain implementasi fitur, aktivitas yang dilakukan juga meliputi diskusi kebutuhan dengan pembimbing dan anggota tim, pembacaan struktur kode yang sudah ada, penyesuaian rancangan berdasarkan umpan balik, serta perbaikan modul setelah dilakukan pengecekan. Aktivitas tersebut memperlihatkan bahwa pengembangan perangkat lunak di industri berlangsung secara iteratif dan membutuhkan koordinasi lintas peran.
 
 \section{Konsep Dasar yang Berkaitan dengan Silabus}
-Konsep utama yang digunakan dalam mata kuliah ini adalah pemecahan kebutuhan bisnis menjadi modul perangkat lunak yang memiliki tanggung jawab jelas. Pada implementasi Import Nilai Neon Uji, helper \texttt{canProceedImportNeonUji} memvalidasi kelengkapan filter, \texttt{resetImportNeonUjiFiltersFromField} menjaga urutan reset field, dan \texttt{normalizeImportNeonUjiTargetIds} menyamakan input target tunggal maupun jamak agar alur data tetap konsisten~\cite{pendidikan_useImportNeonUji_helpers,pendidikan_useImportNeonUji_test}.
+Konsep utama yang digunakan dalam mata kuliah ini adalah pemecahan kebutuhan bisnis menjadi modul perangkat lunak yang memiliki tanggung jawab jelas. Pada implementasi Import Nilai Neon Uji, helper \code{canProceedImportNeonUji} memvalidasi kelengkapan filter, \code{resetImportNeonUjiFiltersFromField} menjaga urutan reset field, dan \code{normalizeImportNeonUjiTargetIds} menyamakan input target tunggal maupun jamak agar alur data tetap konsisten~\cite{pendidikan_useImportNeonUji_helpers,pendidikan_useImportNeonUji_test}.
 
 Konsep lain yang digunakan adalah pengembangan antarmuka berbasis komponen. Storybook dipakai untuk mendokumentasikan state dan variasi komponen, sedangkan \textit{shadcn/ui} menjadi acuan \textit{design library} karena menyediakan komponen yang dapat dipakai ulang dan mudah dikustomisasi~\cite{storybook_docs,shadcn_ui}.
 
-Pengembangan fitur juga berkaitan dengan integrasi data dan validasi alur. Pada fungsi \texttt{generateGradingComponentsData}, data komponen penilaian, jenjang studi, target, dan cabang digabungkan sebelum masuk ke tahap publikasi nilai. Pola ini menunjukkan bahwa modul frontend tidak hanya menampilkan data, tetapi juga membentuk struktur data yang siap diproses oleh service berikutnya~\cite{pendidikan_useImportNeonUji_composable,pendidikan_import_neon_uji_services}.
+Pengembangan fitur juga berkaitan dengan integrasi data dan validasi alur. Pada fungsi \code{generateGradingComponentsData}, data komponen penilaian, jenjang studi, target, dan cabang digabungkan sebelum masuk ke tahap publikasi nilai. Pola ini menunjukkan bahwa modul frontend tidak hanya menampilkan data, tetapi juga membentuk struktur data yang siap diproses oleh service berikutnya~\cite{pendidikan_useImportNeonUji_composable,pendidikan_import_neon_uji_services}.
 
 \section{Hasil dan Pembahasan}
 Hasil utama dari pelaksanaan mata kuliah ini adalah meningkatnya kemampuan menerapkan proses pengembangan fitur secara utuh, mulai dari memahami kebutuhan hingga menghasilkan modul yang dapat digunakan dalam sistem. Pada Neon Interfaces, kontribusi yang dilakukan mendukung tersedianya dokumentasi komponen antarmuka melalui Storybook. Dokumentasi tersebut membantu anggota tim memahami variasi komponen, properti yang tersedia, serta cara penggunaan komponen secara konsisten~\cite{storybook_docs,shadcn_ui}.
@@ -41,7 +45,7 @@ Gambar~\ref{fig:output_project_neon} menunjukkan ringkasan output pekerjaan sela
     \label{fig:output_project_neon}
 \end{figure}
 
-Salah satu bagian penting pada implementasi fitur berada pada composable \texttt{useImportNeonUji.ts}. Bagian ini bertanggung jawab membentuk data awal komponen penilaian berdasarkan tipe penilaian yang dipilih pengguna. Kode mengambil daftar komponen penilaian dari service, memvalidasi data kosong, lalu menyiapkan nama tipe penilaian untuk ditampilkan pada tabel pemetaan quiz~\cite{pendidikan_useImportNeonUji_composable}.
+Salah satu bagian penting pada implementasi fitur berada pada composable \code{useImportNeonUji.ts}. Bagian ini bertanggung jawab membentuk data awal komponen penilaian berdasarkan tipe penilaian yang dipilih pengguna. Kode mengambil daftar komponen penilaian dari service, memvalidasi data kosong, lalu menyiapkan nama tipe penilaian untuk ditampilkan pada tabel pemetaan quiz~\cite{pendidikan_useImportNeonUji_composable}.
 
 \begin{lstlisting}[language=JavaScript, caption={Cuplikan alur pembentukan data komponen penilaian Import Neon Uji}, label={lst:generate_grading_components}]
 const isQuizSet = isQuizSetFlow.value
